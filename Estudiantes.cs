@@ -37,8 +37,8 @@ namespace MesaDeExamen
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MySqlConnection conexión = new MySqlConnection("Data Source=localhost; Initial Catalog = mesasdeexamenes;Uid = root; pwd = martinaanalista@");
-            MySqlDataAdapter da = new MySqlDataAdapter("Select * from Estudiantes", conexión);
+            var cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString());
+            MySqlDataAdapter da = new MySqlDataAdapter("Select * from Estudiantes", cone);
             DataTable dt = new DataTable();
             int registros = da.Fill(dt);
             if (registros > 0)
@@ -46,7 +46,7 @@ namespace MesaDeExamen
                 dgvEstudiantes.DataSource = dt;
             }
 
-            MySqlDataAdapter daCarreras = new MySqlDataAdapter("Select * from Carreras", conexión);
+            MySqlDataAdapter daCarreras = new MySqlDataAdapter("Select * from Carreras", cone);
             DataTable dtCarreras = new DataTable();
             registros = daCarreras.Fill(dtCarreras);
             if (registros > 0)
@@ -217,7 +217,7 @@ namespace MesaDeExamen
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            var cone = new MySqlConnection("Data Source=localhost; Initial Catalog = mesasdeexamenes;Uid = root; pwd = martinaanalista@");
+            var cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString());
             cone.Open();
             bool lValidado = true;
             string Mensaje = string.Empty;

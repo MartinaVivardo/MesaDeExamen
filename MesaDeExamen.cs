@@ -93,6 +93,71 @@ namespace MesaDeExamen
                 return;
             }
 
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            textIdMesa.Enabled = true;
+            textIdMesa.Clear();
+            cboLlamado.Enabled = true;
+            cboProf.Enabled = true;
+            cboFin.Enabled = true;
+            cboIdMateria.Enabled = true;
+            cboCarrera.Enabled = true;
+            textIdMesa.Text = "0";
+            dtpFecha.Focus();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            textIdMesa.Enabled = true;
+            cboLlamado.Enabled = true;
+            cboProf.Enabled = true;
+            cboFin.Enabled = true;
+            cboIdMateria.Enabled = true;
+            cboCarrera.Enabled = true;
+            dtpFecha.Focus();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            var cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString());
+            cone.Open();
+            bool lValidado = true;
+            string Mensaje = string.Empty;
+
+            if (cboProf.SelectedValue == null)
+            {
+                Mensaje += String.Format("Ingrese nombre del profesor \r");
+                lValidado = false;
+            }
+            if (cboLlamado.SelectedValue == null)
+            {
+                Mensaje += String.Format("Ingrese el id del llamado \r");
+                lValidado = false;
+            }
+            if (cboIdMateria.SelectedValue == null)
+            {
+                Mensaje += String.Format("Ingrese Materia: \r");
+                lValidado = false;
+            }
+            if (cboCarrera.SelectedValue == null)
+            {
+                Mensaje += String.Format("Ingrese Carrera: \r");
+                lValidado = false;
+            }
+            if (cboFin.SelectedItem.ToString().Length == 0)
+            {
+                Mensaje += String.Format("Ingrese si esta finalizada: \r");
+                lValidado = false;
+            }
+
+
+
+            if (lValidado == false)
+            {
+                MessageBox.Show(Mensaje, "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
 
             int finalizada = cboFin.SelectedItem.ToString() == "Si" ? 1 : 0;
             string sentencia = string.Empty;

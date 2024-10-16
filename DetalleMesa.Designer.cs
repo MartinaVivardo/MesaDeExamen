@@ -86,9 +86,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(54, 221);
+            label3.Location = new Point(62, 295);
             label3.Name = "label3";
-            label3.Size = new Size(0, 20);
+            label3.Size = new Size(0, 25);
             label3.TabIndex = 72;
             // 
             // textIdDet
@@ -106,7 +106,7 @@
             label2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(27, 46);
             label2.Name = "label2";
-            label2.Size = new Size(78, 18);
+            label2.Size = new Size(97, 24);
             label2.TabIndex = 70;
             label2.Text = "IdDetalle:";
             // 
@@ -114,9 +114,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(311, 9);
+            label1.Location = new Point(355, 12);
             label1.Name = "label1";
-            label1.Size = new Size(116, 20);
+            label1.Size = new Size(146, 25);
             label1.TabIndex = 69;
             label1.Text = "DETALLE MESA";
             // 
@@ -134,7 +134,7 @@
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.Location = new Point(129, 333);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(99, 40);
+            btnCancelar.Size = new Size(113, 53);
             btnCancelar.TabIndex = 93;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -163,7 +163,7 @@
             btnGuardar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnGuardar.Location = new Point(50, 275);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(93, 40);
+            btnGuardar.Size = new Size(106, 53);
             btnGuardar.TabIndex = 90;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -174,7 +174,7 @@
             btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.Location = new Point(207, 275);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(99, 40);
+            btnEliminar.Size = new Size(113, 53);
             btnEliminar.TabIndex = 89;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -185,7 +185,7 @@
             btnConsultar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnConsultar.Location = new Point(129, 459);
             btnConsultar.Name = "btnConsultar";
-            btnConsultar.Size = new Size(99, 40);
+            btnConsultar.Size = new Size(113, 53);
             btnConsultar.TabIndex = 88;
             btnConsultar.Text = "Consultar";
             btnConsultar.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@
             btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnModificar.Location = new Point(208, 201);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(98, 40);
+            btnModificar.Size = new Size(112, 53);
             btnModificar.TabIndex = 87;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
@@ -207,7 +207,7 @@
             btnAgregar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.Location = new Point(50, 201);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(93, 40);
+            btnAgregar.Size = new Size(106, 53);
             btnAgregar.TabIndex = 86;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -262,7 +262,7 @@
             // 
             // DetalleMesa
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 526);
             Controls.Add(cboCarrera);
@@ -286,6 +286,7 @@
             Controls.Add(textIdDet);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "DetalleMesa";
             Text = "DetalleMesa";
             Load += DetalleMesa_Load;

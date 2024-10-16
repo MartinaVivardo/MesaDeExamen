@@ -53,9 +53,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(318, 9);
+            label1.Location = new Point(363, 12);
             label1.Name = "label1";
-            label1.Size = new Size(100, 20);
+            label1.Size = new Size(128, 25);
             label1.TabIndex = 0;
             label1.Text = "PROFESORES";
             // 
@@ -63,9 +63,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(19, 57);
+            label2.Location = new Point(22, 76);
             label2.Name = "label2";
-            label2.Size = new Size(88, 20);
+            label2.Size = new Size(113, 25);
             label2.TabIndex = 1;
             label2.Text = "IdProfesor:";
             // 
@@ -73,18 +73,19 @@
             // 
             textIdProf.Enabled = false;
             textIdProf.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textIdProf.Location = new Point(132, 57);
+            textIdProf.Location = new Point(151, 76);
+            textIdProf.Margin = new Padding(3, 4, 3, 4);
             textIdProf.Name = "textIdProf";
-            textIdProf.Size = new Size(60, 27);
+            textIdProf.Size = new Size(68, 32);
             textIdProf.TabIndex = 2;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(19, 108);
+            label3.Location = new Point(22, 144);
             label3.Name = "label3";
-            label3.Size = new Size(71, 20);
+            label3.Size = new Size(91, 25);
             label3.TabIndex = 3;
             label3.Text = "Apellido:";
             // 
@@ -92,18 +93,19 @@
             // 
             textApellido.Enabled = false;
             textApellido.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textApellido.Location = new Point(132, 105);
+            textApellido.Location = new Point(151, 140);
+            textApellido.Margin = new Padding(3, 4, 3, 4);
             textApellido.Name = "textApellido";
-            textApellido.Size = new Size(100, 27);
+            textApellido.Size = new Size(114, 32);
             textApellido.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(19, 155);
+            label4.Location = new Point(22, 207);
             label4.Name = "label4";
-            label4.Size = new Size(71, 20);
+            label4.Size = new Size(91, 25);
             label4.TabIndex = 5;
             label4.Text = "Nombre:";
             // 
@@ -111,9 +113,10 @@
             // 
             textNomb.Enabled = false;
             textNomb.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textNomb.Location = new Point(132, 152);
+            textNomb.Location = new Point(151, 203);
+            textNomb.Margin = new Padding(3, 4, 3, 4);
             textNomb.Name = "textNomb";
-            textNomb.Size = new Size(100, 27);
+            textNomb.Size = new Size(114, 32);
             textNomb.TabIndex = 6;
             // 
             // dgvProfesores
@@ -129,9 +132,10 @@
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminar.Location = new Point(169, 289);
+            btnEliminar.Location = new Point(193, 385);
+            btnEliminar.Margin = new Padding(3, 4, 3, 4);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(99, 40);
+            btnEliminar.Size = new Size(113, 53);
             btnEliminar.TabIndex = 38;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -142,7 +146,7 @@
             btnConsultar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnConsultar.Location = new Point(251, 433);
             btnConsultar.Name = "btnConsultar";
-            btnConsultar.Size = new Size(99, 40);
+            btnConsultar.Size = new Size(113, 53);
             btnConsultar.TabIndex = 37;
             btnConsultar.Text = "Consultar";
             btnConsultar.UseVisualStyleBackColor = true;
@@ -151,9 +155,10 @@
             // btnModificar
             // 
             btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.Location = new Point(169, 215);
+            btnModificar.Location = new Point(193, 287);
+            btnModificar.Margin = new Padding(3, 4, 3, 4);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(98, 40);
+            btnModificar.Size = new Size(112, 53);
             btnModificar.TabIndex = 36;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
@@ -162,9 +167,10 @@
             // btnAgregar
             // 
             btnAgregar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAgregar.Location = new Point(11, 215);
+            btnAgregar.Location = new Point(13, 287);
+            btnAgregar.Margin = new Padding(3, 4, 3, 4);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(93, 40);
+            btnAgregar.Size = new Size(106, 53);
             btnAgregar.TabIndex = 35;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -173,9 +179,10 @@
             // btnGuardar
             // 
             btnGuardar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnGuardar.Location = new Point(11, 289);
+            btnGuardar.Location = new Point(13, 385);
+            btnGuardar.Margin = new Padding(3, 4, 3, 4);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(93, 40);
+            btnGuardar.Size = new Size(106, 53);
             btnGuardar.TabIndex = 40;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -186,7 +193,7 @@
             textBusqueda.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             textBusqueda.Location = new Point(164, 395);
             textBusqueda.Name = "textBusqueda";
-            textBusqueda.Size = new Size(100, 27);
+            textBusqueda.Size = new Size(114, 32);
             textBusqueda.TabIndex = 41;
             // 
             // label5
@@ -204,7 +211,7 @@
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.Location = new Point(90, 336);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(99, 40);
+            btnCancelar.Size = new Size(113, 53);
             btnCancelar.TabIndex = 43;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -229,7 +236,7 @@
             // 
             // Profesores
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(868, 506);
             Controls.Add(textIdBusqueda);
@@ -250,6 +257,7 @@
             Controls.Add(textIdProf);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Profesores";
             Text = "Profesores";
             Load += Profesores_Load;
