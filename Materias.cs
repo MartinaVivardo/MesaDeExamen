@@ -80,8 +80,11 @@ namespace MesaDeExamen
             cboCarrera.Enabled = true;
             cboProf.Enabled = true;
             textAño.Text = "0";
+            textIdMateria.Text= "0";
             textNomb.Clear();
             textIdMateria.Enabled = true;
+            textIdMateria.Clear();
+            textNomb.Focus();
 
         }
 
@@ -137,17 +140,38 @@ namespace MesaDeExamen
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desea realmente eliminar esta materia?", "Solicitud del Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+            if (dgvMaterias.SelectedRows.Count > 0)
             {
-                var cone = new MySqlConnection("Data Source=localhost; Initial Catalog = mesasdeexamenes;Uid = root; pwd = martinaanalista@");
-                cone.Open();
 
-                string sentencia = string.Format("Delete From materias Where idmateria = {0}", textIdMateria.Text.Trim());
-                var cmdEliminar = new MySqlCommand(sentencia, cone);
-                cmdEliminar.ExecuteNonQuery();
+                int idMateria = Convert.ToInt32(textIdMateria.Text.Trim());
 
-                cone.Close();
-                Close();
+
+                var confirmResult = MessageBox.Show("¿Estás seguro de que deseas eliminar este registro?",
+                                                    "Confirmar Eliminación",
+                                                    MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+
+                    using (MySqlConnection cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@"))
+                    {
+                        cone.Open();
+
+
+                        string sentencia = string.Format("DELETE FROM materias WHERE IdMateria = {0}", idMateria);
+                        MySqlCommand comando = new MySqlCommand(sentencia, cone);
+
+                        comando.ExecuteNonQuery();
+
+
+                        Materias_Load(sender, e);
+                    }
+
+                    MessageBox.Show("Registro eliminado correctamente.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un registro para eliminar.");
             }
         }
 
@@ -165,14 +189,14 @@ namespace MesaDeExamen
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-           
+
             if (string.IsNullOrEmpty(textIdMateria.Text))
             {
                 MessageBox.Show("Debe seleccionar una materia para modificar.", "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-           
+
             if (textNomb.Text.Trim().Length == 0 || textAño.Text.Trim().Length == 0 || cboCarrera.SelectedValue == null || cboProf.SelectedValue == null)
             {
                 MessageBox.Show("Debe completar todos los campos obligatorios antes de modificar.", "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -181,13 +205,13 @@ namespace MesaDeExamen
 
             try
             {
-                
+
                 var coneDB = ConfigurationManager.ConnectionStrings["conexionDB"].ToString();
                 using (var cone = new MySqlConnection(coneDB))
                 {
                     cone.Open();
 
-                   
+
                     string sentencia = string.Format(
                         "UPDATE materias SET NombreMateria = '{0}', IdCarrera = {1}, Año = {2}, IdProfesor = {3} WHERE IdMateria = {4}",
                         textNomb.Text.Trim(),
@@ -197,7 +221,7 @@ namespace MesaDeExamen
                         textIdMateria.Text.Trim()
                     );
 
-                    
+
                     var comando = new MySqlCommand(sentencia, cone);
                     int filasAfectadas = comando.ExecuteNonQuery();
 
@@ -205,7 +229,7 @@ namespace MesaDeExamen
                     {
                         MessageBox.Show("Materia modificada correctamente.", "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    
+
                         Materias_Load(sender, e);
                     }
                     else
@@ -216,14 +240,84 @@ namespace MesaDeExamen
             }
             catch (Exception ex)
             {
-               
+
                 MessageBox.Show("Ocurrió un error al modificar la materia: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            
+            // Obtener los valores de los campos de búsqueda
+            string nombreABuscar = textBusquedaNombre.Text.Trim();
+            string idABuscar = textBusquedaId.Text.Trim();
+
+            // Validar que al menos uno de los campos esté lleno
+            if (string.IsNullOrEmpty(nombreABuscar) && string.IsNullOrEmpty(idABuscar))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre o un ID para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (MySqlConnection cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString()))
+            {
+                try
+                {
+                    cone.Open();
+
+                    // Comenzamos la sentencia SQL base
+                    string sentencia = "SELECT * FROM Materias WHERE 1=1";
+
+                    // Si se ingresó un nombre, añadimos la condición para buscar por nombre
+                    if (!string.IsNullOrEmpty(nombreABuscar))
+                    {
+                        sentencia += " AND NombreMateria LIKE @nombre";
+                    }
+
+                    // Si se ingresó un ID, añadimos la condición para buscar por ID
+                    int idMateria;
+                    if (int.TryParse(idABuscar, out idMateria))
+                    {
+                        sentencia += " AND IdMateria = @id";
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand(sentencia, cone))
+                    {
+                        // Agregamos los parámetros de búsqueda
+                        if (!string.IsNullOrEmpty(nombreABuscar))
+                        {
+                            cmd.Parameters.AddWithValue("@nombre", "%" + nombreABuscar + "%");
+                        }
+                        if (int.TryParse(idABuscar, out idMateria))
+                        {
+                            cmd.Parameters.AddWithValue("@id", idMateria);
+                        }
+
+                        // Ejecutamos la consulta y cargamos los resultados en el DataGridView
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            dgvMaterias.DataSource = dt;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron materias con ese nombre o ID.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void cboProf_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
+

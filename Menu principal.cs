@@ -56,7 +56,14 @@ namespace MesaDeExamen
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
 
+        private void detalleMesa_Click(object sender, EventArgs e)
+        {
+
+            DetalleMesa formulario = new DetalleMesa();
+            formulario.ShowDialog();
         }
     }
 }

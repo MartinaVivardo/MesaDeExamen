@@ -39,7 +39,7 @@
             dgvMaterias = new DataGridView();
             btnCancelar = new Button();
             label8 = new Label();
-            textBusqueda = new TextBox();
+            textBusquedaNombre = new TextBox();
             btnGuardar = new Button();
             btnEliminar = new Button();
             btnConsultar = new Button();
@@ -49,6 +49,8 @@
             cboProf = new ComboBox();
             textIdMateria = new TextBox();
             label7 = new Label();
+            label9 = new Label();
+            textBusquedaId = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvMaterias).BeginInit();
             SuspendLayout();
             // 
@@ -154,19 +156,19 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(46, 435);
+            label8.Location = new Point(10, 400);
             label8.Name = "label8";
-            label8.Size = new Size(178, 20);
+            label8.Size = new Size(147, 20);
             label8.TabIndex = 109;
-            label8.Text = "Buscar por nombre o Id:";
+            label8.Text = "Buscar por nombre:";
             // 
-            // textBusqueda
+            // textBusquedaNombre
             // 
-            textBusqueda.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBusqueda.Location = new Point(251, 432);
-            textBusqueda.Name = "textBusqueda";
-            textBusqueda.Size = new Size(100, 27);
-            textBusqueda.TabIndex = 108;
+            textBusquedaNombre.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textBusquedaNombre.Location = new Point(215, 397);
+            textBusquedaNombre.Name = "textBusquedaNombre";
+            textBusquedaNombre.Size = new Size(100, 27);
+            textBusquedaNombre.TabIndex = 108;
             // 
             // btnGuardar
             // 
@@ -225,6 +227,7 @@
             // 
             // cboCarrera
             // 
+            cboCarrera.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCarrera.FormattingEnabled = true;
             cboCarrera.Location = new Point(285, 73);
             cboCarrera.Name = "cboCarrera";
@@ -233,11 +236,13 @@
             // 
             // cboProf
             // 
+            cboProf.DropDownStyle = ComboBoxStyle.DropDownList;
             cboProf.FormattingEnabled = true;
             cboProf.Location = new Point(295, 115);
             cboProf.Name = "cboProf";
             cboProf.Size = new Size(121, 23);
             cboProf.TabIndex = 112;
+            cboProf.SelectedIndexChanged += cboProf_SelectedIndexChanged;
             // 
             // textIdMateria
             // 
@@ -258,18 +263,38 @@
             label7.Text = "IdMateria:";
             label7.Click += label7_Click;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(12, 437);
+            label9.Name = "label9";
+            label9.Size = new Size(106, 20);
+            label9.TabIndex = 115;
+            label9.Text = "Buscar por Id:";
+            // 
+            // textBusquedaId
+            // 
+            textBusquedaId.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textBusquedaId.Location = new Point(215, 434);
+            textBusquedaId.Name = "textBusquedaId";
+            textBusquedaId.Size = new Size(100, 27);
+            textBusquedaId.TabIndex = 116;
+            // 
             // Materias
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(926, 528);
+            Controls.Add(textBusquedaId);
+            Controls.Add(label9);
             Controls.Add(label7);
             Controls.Add(textIdMateria);
             Controls.Add(cboProf);
             Controls.Add(cboCarrera);
             Controls.Add(btnCancelar);
             Controls.Add(label8);
-            Controls.Add(textBusqueda);
+            Controls.Add(textBusquedaNombre);
             Controls.Add(btnGuardar);
             Controls.Add(btnEliminar);
             Controls.Add(btnConsultar);
@@ -304,7 +329,7 @@
         private DataGridView dgvMaterias;
         private Button btnCancelar;
         private Label label8;
-        private TextBox textBusqueda;
+        private TextBox textBusquedaNombre;
         private Button btnGuardar;
         private Button btnEliminar;
         private Button btnConsultar;
@@ -314,5 +339,7 @@
         private ComboBox cboProf;
         private TextBox textIdMateria;
         private Label label7;
+        private Label label9;
+        private TextBox textBusquedaId;
     }
 }

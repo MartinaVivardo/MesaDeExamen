@@ -35,7 +35,7 @@
             textApellido = new TextBox();
             label4 = new Label();
             textNomb = new TextBox();
-            dataGridView1 = new DataGridView();
+            dgvProfesores = new DataGridView();
             btnEliminar = new Button();
             btnConsultar = new Button();
             btnModificar = new Button();
@@ -44,7 +44,9 @@
             textBusqueda = new TextBox();
             label5 = new Label();
             btnCancelar = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            label6 = new Label();
+            textIdBusqueda = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)dgvProfesores).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -69,6 +71,7 @@
             // 
             // textIdProf
             // 
+            textIdProf.Enabled = false;
             textIdProf.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             textIdProf.Location = new Point(132, 57);
             textIdProf.Name = "textIdProf";
@@ -87,6 +90,7 @@
             // 
             // textApellido
             // 
+            textApellido.Enabled = false;
             textApellido.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             textApellido.Location = new Point(132, 105);
             textApellido.Name = "textApellido";
@@ -105,20 +109,22 @@
             // 
             // textNomb
             // 
+            textNomb.Enabled = false;
             textNomb.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             textNomb.Location = new Point(132, 152);
             textNomb.Name = "textNomb";
             textNomb.Size = new Size(100, 27);
             textNomb.TabIndex = 6;
             // 
-            // dataGridView1
+            // dgvProfesores
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(356, 57);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(484, 427);
-            dataGridView1.TabIndex = 24;
+            dgvProfesores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProfesores.Location = new Point(356, 57);
+            dgvProfesores.Name = "dgvProfesores";
+            dgvProfesores.RowTemplate.Height = 25;
+            dgvProfesores.Size = new Size(484, 427);
+            dgvProfesores.TabIndex = 24;
+            dgvProfesores.Leave += dataGridView1_Leave;
             // 
             // btnEliminar
             // 
@@ -129,16 +135,18 @@
             btnEliminar.TabIndex = 38;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConsultar.Location = new Point(93, 444);
+            btnConsultar.Location = new Point(251, 433);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(99, 40);
             btnConsultar.TabIndex = 37;
             btnConsultar.Text = "Consultar";
             btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // btnModificar
             // 
@@ -149,6 +157,7 @@
             btnModificar.TabIndex = 36;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnAgregar
             // 
@@ -159,6 +168,7 @@
             btnAgregar.TabIndex = 35;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnGuardar
             // 
@@ -169,11 +179,12 @@
             btnGuardar.TabIndex = 40;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // textBusqueda
             // 
             textBusqueda.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBusqueda.Location = new Point(216, 406);
+            textBusqueda.Location = new Point(164, 395);
             textBusqueda.Name = "textBusqueda";
             textBusqueda.Size = new Size(100, 27);
             textBusqueda.TabIndex = 41;
@@ -182,27 +193,47 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(11, 409);
+            label5.Location = new Point(11, 398);
             label5.Name = "label5";
-            label5.Size = new Size(178, 20);
+            label5.Size = new Size(147, 20);
             label5.TabIndex = 42;
-            label5.Text = "Buscar por nombre o Id:";
+            label5.Text = "Buscar por nombre:";
             // 
             // btnCancelar
             // 
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancelar.Location = new Point(90, 347);
+            btnCancelar.Location = new Point(90, 336);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(99, 40);
             btnCancelar.TabIndex = 43;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(16, 444);
+            label6.Name = "label6";
+            label6.Size = new Size(106, 20);
+            label6.TabIndex = 44;
+            label6.Text = "Buscar por Id:";
+            // 
+            // textIdBusqueda
+            // 
+            textIdBusqueda.Location = new Point(132, 441);
+            textIdBusqueda.Name = "textIdBusqueda";
+            textIdBusqueda.Size = new Size(81, 23);
+            textIdBusqueda.TabIndex = 45;
             // 
             // Profesores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(868, 506);
+            Controls.Add(textIdBusqueda);
+            Controls.Add(label6);
             Controls.Add(btnCancelar);
             Controls.Add(label5);
             Controls.Add(textBusqueda);
@@ -211,7 +242,7 @@
             Controls.Add(btnConsultar);
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvProfesores);
             Controls.Add(textNomb);
             Controls.Add(label4);
             Controls.Add(textApellido);
@@ -222,7 +253,7 @@
             Name = "Profesores";
             Text = "Profesores";
             Load += Profesores_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProfesores).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -236,7 +267,7 @@
         private TextBox textApellido;
         private Label label4;
         private TextBox textNomb;
-        private DataGridView dataGridView1;
+        private DataGridView dgvProfesores;
         private Button btnEliminar;
         private Button btnConsultar;
         private Button btnModificar;
@@ -245,5 +276,7 @@
         private TextBox textBusqueda;
         private Label label5;
         private Button btnCancelar;
+        private Label label6;
+        private TextBox textIdBusqueda;
     }
 }

@@ -29,18 +29,13 @@
         private void InitializeComponent()
         {
             label7 = new Label();
-            textBox1 = new TextBox();
-            label5 = new Label();
-            textBox2 = new TextBox();
             label6 = new Label();
-            textNomb = new TextBox();
             label4 = new Label();
-            textApellido = new TextBox();
             label3 = new Label();
-            textIdProf = new TextBox();
+            textIdDet = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            dataGridView1 = new DataGridView();
+            dgvDetalleMesa = new DataGridView();
             btnCancelar = new Button();
             label8 = new Label();
             textBusqueda = new TextBox();
@@ -49,80 +44,43 @@
             btnConsultar = new Button();
             btnModificar = new Button();
             btnAgregar = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            cboLlamado = new ComboBox();
+            cboEstudiante = new ComboBox();
+            cboMesa = new ComboBox();
+            label10 = new Label();
+            cboCarrera = new ComboBox();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleMesa).BeginInit();
             SuspendLayout();
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(235, 113);
+            label7.Location = new Point(209, 99);
             label7.Name = "label7";
-            label7.Size = new Size(64, 20);
+            label7.Size = new Size(50, 20);
             label7.TabIndex = 84;
-            label7.Text = "IdMesa:";
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBox1.Location = new Point(325, 62);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(57, 27);
-            textBox1.TabIndex = 83;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(235, 65);
-            label5.Name = "label5";
-            label5.Size = new Size(85, 20);
-            label5.TabIndex = 82;
-            label5.Text = "Nota Final:";
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBox2.Location = new Point(148, 111);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(57, 24);
-            textBox2.TabIndex = 81;
+            label7.Text = "Mesa:";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(39, 172);
+            label6.Location = new Point(17, 99);
             label6.Name = "label6";
-            label6.Size = new Size(80, 18);
+            label6.Size = new Size(77, 18);
             label6.TabIndex = 80;
-            label6.Text = "Presente:";
-            // 
-            // textNomb
-            // 
-            textNomb.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textNomb.Location = new Point(325, 113);
-            textNomb.Name = "textNomb";
-            textNomb.Size = new Size(61, 27);
-            textNomb.TabIndex = 75;
+            label6.Text = "Llamado:";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(41, 113);
+            label4.Location = new Point(207, 48);
             label4.Name = "label4";
-            label4.Size = new Size(101, 20);
+            label4.Size = new Size(87, 20);
             label4.TabIndex = 74;
-            label4.Text = "IdEstudiante:";
-            // 
-            // textApellido
-            // 
-            textApellido.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textApellido.Location = new Point(125, 168);
-            textApellido.Name = "textApellido";
-            textApellido.Size = new Size(72, 27);
-            textApellido.TabIndex = 73;
+            label4.Text = "Estudiante:";
             // 
             // label3
             // 
@@ -133,19 +91,20 @@
             label3.Size = new Size(0, 20);
             label3.TabIndex = 72;
             // 
-            // textIdProf
+            // textIdDet
             // 
-            textIdProf.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textIdProf.Location = new Point(140, 58);
-            textIdProf.Name = "textIdProf";
-            textIdProf.Size = new Size(57, 24);
-            textIdProf.TabIndex = 71;
+            textIdDet.Enabled = false;
+            textIdDet.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textIdDet.Location = new Point(126, 43);
+            textIdDet.Name = "textIdDet";
+            textIdDet.Size = new Size(57, 24);
+            textIdDet.TabIndex = 71;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(41, 61);
+            label2.Location = new Point(27, 46);
             label2.Name = "label2";
             label2.Size = new Size(78, 18);
             label2.TabIndex = 70;
@@ -161,98 +120,156 @@
             label1.TabIndex = 69;
             label1.Text = "DETALLE MESA";
             // 
-            // dataGridView1
+            // dgvDetalleMesa
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(392, 46);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(372, 468);
-            dataGridView1.TabIndex = 85;
+            dgvDetalleMesa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDetalleMesa.Location = new Point(392, 46);
+            dgvDetalleMesa.Name = "dgvDetalleMesa";
+            dgvDetalleMesa.RowTemplate.Height = 25;
+            dgvDetalleMesa.Size = new Size(372, 468);
+            dgvDetalleMesa.TabIndex = 85;
             // 
             // btnCancelar
             // 
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancelar.Location = new Point(122, 363);
+            btnCancelar.Location = new Point(129, 333);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(99, 40);
             btnCancelar.TabIndex = 93;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(43, 425);
+            label8.Location = new Point(2, 422);
             label8.Name = "label8";
-            label8.Size = new Size(178, 20);
+            label8.Size = new Size(181, 20);
             label8.TabIndex = 92;
-            label8.Text = "Buscar por nombre o Id:";
+            label8.Text = "Buscar por Nombre o Id:";
             // 
             // textBusqueda
             // 
             textBusqueda.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBusqueda.Location = new Point(248, 422);
+            textBusqueda.Location = new Point(206, 419);
             textBusqueda.Name = "textBusqueda";
-            textBusqueda.Size = new Size(100, 27);
+            textBusqueda.Size = new Size(124, 27);
             textBusqueda.TabIndex = 91;
             // 
             // btnGuardar
             // 
             btnGuardar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnGuardar.Location = new Point(43, 305);
+            btnGuardar.Location = new Point(50, 275);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(93, 40);
             btnGuardar.TabIndex = 90;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminar.Location = new Point(200, 305);
+            btnEliminar.Location = new Point(207, 275);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(99, 40);
             btnEliminar.TabIndex = 89;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConsultar.Location = new Point(125, 460);
+            btnConsultar.Location = new Point(129, 459);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(99, 40);
             btnConsultar.TabIndex = 88;
             btnConsultar.Text = "Consultar";
             btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // btnModificar
             // 
             btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.Location = new Point(201, 231);
+            btnModificar.Location = new Point(208, 201);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(98, 40);
             btnModificar.TabIndex = 87;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnAgregar
             // 
             btnAgregar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAgregar.Location = new Point(43, 231);
+            btnAgregar.Location = new Point(50, 201);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(93, 40);
             btnAgregar.TabIndex = 86;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
+            // 
+            // cboLlamado
+            // 
+            cboLlamado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboLlamado.FormattingEnabled = true;
+            cboLlamado.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
+            cboLlamado.Location = new Point(103, 99);
+            cboLlamado.Name = "cboLlamado";
+            cboLlamado.Size = new Size(80, 23);
+            cboLlamado.TabIndex = 96;
+            // 
+            // cboEstudiante
+            // 
+            cboEstudiante.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboEstudiante.FormattingEnabled = true;
+            cboEstudiante.Location = new Point(300, 49);
+            cboEstudiante.Name = "cboEstudiante";
+            cboEstudiante.Size = new Size(80, 23);
+            cboEstudiante.TabIndex = 97;
+            // 
+            // cboMesa
+            // 
+            cboMesa.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboMesa.FormattingEnabled = true;
+            cboMesa.Location = new Point(275, 99);
+            cboMesa.Name = "cboMesa";
+            cboMesa.Size = new Size(96, 23);
+            cboMesa.TabIndex = 98;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(21, 152);
+            label10.Name = "label10";
+            label10.Size = new Size(64, 20);
+            label10.TabIndex = 99;
+            label10.Text = "Carrera:";
+            // 
+            // cboCarrera
+            // 
+            cboCarrera.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCarrera.FormattingEnabled = true;
+            cboCarrera.Location = new Point(91, 149);
+            cboCarrera.Name = "cboCarrera";
+            cboCarrera.Size = new Size(141, 23);
+            cboCarrera.TabIndex = 100;
             // 
             // DetalleMesa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 526);
+            Controls.Add(cboCarrera);
+            Controls.Add(label10);
+            Controls.Add(cboMesa);
+            Controls.Add(cboEstudiante);
+            Controls.Add(cboLlamado);
             Controls.Add(btnCancelar);
             Controls.Add(label8);
             Controls.Add(textBusqueda);
@@ -261,22 +278,18 @@
             Controls.Add(btnConsultar);
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvDetalleMesa);
             Controls.Add(label7);
-            Controls.Add(textBox1);
-            Controls.Add(label5);
-            Controls.Add(textBox2);
             Controls.Add(label6);
-            Controls.Add(textNomb);
             Controls.Add(label4);
-            Controls.Add(textApellido);
             Controls.Add(label3);
-            Controls.Add(textIdProf);
+            Controls.Add(textIdDet);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "DetalleMesa";
             Text = "DetalleMesa";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += DetalleMesa_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleMesa).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -284,18 +297,13 @@
         #endregion
 
         private Label label7;
-        private TextBox textBox1;
-        private Label label5;
-        private TextBox textBox2;
         private Label label6;
-        private TextBox textNomb;
         private Label label4;
-        private TextBox textApellido;
         private Label label3;
-        private TextBox textIdProf;
+        private TextBox textIdDet;
         private Label label2;
         private Label label1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvDetalleMesa;
         private Button btnCancelar;
         private Label label8;
         private TextBox textBusqueda;
@@ -304,5 +312,10 @@
         private Button btnConsultar;
         private Button btnModificar;
         private Button btnAgregar;
+        private ComboBox cboLlamado;
+        private ComboBox cboEstudiante;
+        private ComboBox cboMesa;
+        private Label label10;
+        private ComboBox cboCarrera;
     }
 }

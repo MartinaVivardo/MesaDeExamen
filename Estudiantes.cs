@@ -82,96 +82,136 @@ namespace MesaDeExamen
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desea realmente eliminar este estudiante?", "Solicitud del Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+
+            if (dgvEstudiantes.CurrentRow == null)
             {
-                var cone = new MySqlConnection("Data Source=localhost; Initial Catalog = mesasdeexamenes;Uid = root; pwd = martinaanalista@");
-                cone.Open();
+                MessageBox.Show("Por favor, seleccione un estudiante para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                string sentencia = string.Format("Delete From estudiantes Where idestudiante = {0}", textIdEstudiante.Text.Trim());
-                var cmdEliminar = new MySqlCommand(sentencia, cone);
-                cmdEliminar.ExecuteNonQuery();
 
-                cone.Close();
-                Close();
+            int idEstudiante = Convert.ToInt32(dgvEstudiantes.CurrentRow.Cells["IdEstudiante"].Value);
+
+            DialogResult resultado = MessageBox.Show("¿Está seguro que desea eliminar este estudiante?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                try
+                {
+                    using (MySqlConnection cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@"))
+                    {
+                        cone.Open();
+
+
+                        string sentencia = "DELETE FROM Estudiantes WHERE IdEstudiante = @idEstudiante";
+
+                        using (MySqlCommand cmd = new MySqlCommand(sentencia, cone))
+                        {
+                            cmd.Parameters.AddWithValue("@idEstudiante", idEstudiante);
+
+
+                            int filasAfectadas = cmd.ExecuteNonQuery();
+
+                            if (filasAfectadas > 0)
+                            {
+                                MessageBox.Show("Estudiante eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Form1_Load(sender, e);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error al intentar eliminar el estudiante.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            textNom.Enabled = true;
+            textApe.Enabled = true;
+            textMatricula.Enabled = true;
+            textIdEstudiante.Enabled = true;
+            textdni.Enabled = true;
+            cboIdCarrera.Enabled = true;
+            textNom.Focus();
 
-            
-            if (textIdEstudiante.Text == "0" || string.IsNullOrEmpty(textIdEstudiante.Text))
-            {
-                MessageBox.Show("Por favor, seleccione un estudiante para modificar.");
-                return;
-            }
-
-            bool lValidado = true;
-            string Mensaje = string.Empty;
-
-           
-            if (textApe.Text.Trim().Length == 0)
-            {
-                Mensaje += "Ingrese apellido \r";
-                lValidado = false;
-            }
-            if (textNom.Text.Trim().Length == 0)
-            {
-                Mensaje += "Ingrese nombre \r";
-                lValidado = false;
-            }
-            if (textdni.Text.Trim().Length < 8)
-            {
-                Mensaje += "Ingrese DNI válido \r";
-                lValidado = false;
-            }
-            if (Convert.ToInt32(cboIdCarrera.SelectedValue) == 0)
-            {
-                Mensaje += "Seleccione carrera \r";
-                lValidado = false;
-            }
-
-            if (!lValidado)
-            {
-                MessageBox.Show(Mensaje, "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-
-          
-            using (var cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@"))
-            {
-                try
-                {
-                    cone.Open();
-                    string sentencia = string.Format("Update estudiantes set nombre = '{0}', apellido = '{1}', tipodoc = '{2}', documento = '{3}', idcarrera = {4}, nromatricula = {5} where idestudiante = {6}",
-                                                     textNom.Text.Trim(),
-                                                     textApe.Text.Trim(),
-                                                     cboTipoDoc.SelectedItem.ToString(),
-                                                     textdni.Text.Trim(),
-                                                     cboIdCarrera.SelectedValue,
-                                                     textMatricula.Text.Trim(),
-                                                     textIdEstudiante.Text.Trim());
-
-                    var comando = new MySqlCommand(sentencia, cone);
-                    comando.ExecuteNonQuery();
-
-                    MessageBox.Show("Estudiante modificado correctamente", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                  
-                    Form1_Load(sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ocurrió un error al modificar el estudiante: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
 
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-           
+
+            string nombreABuscar = textBusqueda.Text.Trim();
+            string idABuscar = textBusquedaId.Text.Trim();
+
+
+            if (string.IsNullOrEmpty(nombreABuscar) && string.IsNullOrEmpty(idABuscar))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre o un ID para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (MySqlConnection cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString()))
+            {
+                try
+                {
+                    cone.Open();
+
+
+                    string sentencia = "SELECT * FROM Estudiantes WHERE 1=1";
+
+
+                    if (!string.IsNullOrEmpty(nombreABuscar))
+                    {
+                        sentencia += " AND nombre LIKE @nombre";
+                    }
+
+
+                    int idMateria;
+                    if (int.TryParse(idABuscar, out idMateria))
+                    {
+                        sentencia += " AND IdEstudiante = @id";
+                    }
+
+                    using (MySqlCommand cmd = new MySqlCommand(sentencia, cone))
+                    {
+
+                        if (!string.IsNullOrEmpty(nombreABuscar))
+                        {
+                            cmd.Parameters.AddWithValue("@nombre", "%" + nombreABuscar + "%");
+                        }
+                        if (int.TryParse(idABuscar, out idMateria))
+                        {
+                            cmd.Parameters.AddWithValue("@id", idMateria);
+                        }
+
+
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            dgvEstudiantes.DataSource = dt;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron estudiantes con ese nombre o ID.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrió un error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
         }
 
@@ -220,19 +260,29 @@ namespace MesaDeExamen
             comando.ExecuteNonQuery();
             cone.Close();
             Form1_Load(sender, e);
-           
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (!esNuevoRegistro && idEstudianteActual != -1)
-            {
 
-                textNom.Text = nombreOriginal;
-                textApe.Text = apellidoOriginal;
-                textMatricula.Text = matriculaOriginal.ToString();
-            }
+            textNom.Clear();
+            textApe.Clear();
+            textdni.Clear();
+            textMatricula.Clear();
+            textIdEstudiante.Clear();
+            cboIdCarrera.SelectedIndex = -1;
+            cboTipoDoc.SelectedIndex = -1;
 
+
+            textNom.Enabled = false;
+            textApe.Enabled = false;
+            textdni.Enabled = false;
+            textMatricula.Enabled = false;
+            cboIdCarrera.Enabled = false;
+            cboTipoDoc.Enabled = false;
+
+            textNom.Focus();
         }
 
         private void dgvEstudiantes_SelectionChanged(object sender, EventArgs e)
@@ -247,6 +297,11 @@ namespace MesaDeExamen
         }
 
         private void cboIdCarrera_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textApe_TextChanged(object sender, EventArgs e)
         {
 
         }
