@@ -15,6 +15,7 @@ namespace MesaDeExamen
         public Menu_principal()
         {
             InitializeComponent();
+
         }
 
         private void btnEstudiantes_Click(object sender, EventArgs e)
@@ -64,6 +65,57 @@ namespace MesaDeExamen
 
             DetalleMesa formulario = new DetalleMesa();
             formulario.ShowDialog();
+        }
+
+        private void btnEstudiantes_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProfesores_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Menu_principal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void Menu_principal_Resize(object sender, EventArgs e)
+        {
+            // Verificar si el formulario está maximizado
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                CenterControls();
+            }
+        }
+
+        private void CenterControls()
+        {
+            
         }
     }
 }
