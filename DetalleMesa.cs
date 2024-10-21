@@ -25,6 +25,7 @@ namespace MesaDeExamen
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             cboEstudiante.Enabled = true;
+
             cboCarrera.Enabled = true;
             cboLlamado.Enabled = true;
             cboMesa.Enabled = true;
@@ -37,7 +38,7 @@ namespace MesaDeExamen
         {
 
             MySqlConnection conexión = new MySqlConnection("Data Source=localhost; Initial Catalog = mesasdeexamenes;Uid = root; pwd = martinaanalista@");
-            MySqlDataAdapter da = new MySqlDataAdapter("Select * from detallemesadeexamen", conexión);
+            MySqlDataAdapter da = new MySqlDataAdapter("Select detallemesadeexamen.IdDetalle,materias.NombreMateria,estudiantes.Apellido, estudiantes.Nombre, carreras.NombreCarrera, llamados.IdLlamado from detallemesadeexamen left join estudiantes on detallemesadeexamen.IdEstudiante= estudiantes.idEstudiante left join materias on detallemesadeexamen.IdMateria=materias.IdMateria left join carreras on detallemesadeexamen.IdCarrera=carreras.IdCarrera left join llamados on detallemesadeexamen.Llamados=llamados.IdLlamado ", conexión);
             DataTable dt = new DataTable();
             int registros = da.Fill(dt);
             if (registros > 0)
@@ -71,6 +72,16 @@ namespace MesaDeExamen
                 cboMesa.DisplayMember = "fecha";
                 cboMesa.ValueMember = "IdMesaExamen";
             }
+            MySqlDataAdapter damaterias = new MySqlDataAdapter("Select * from materias", conexión);
+            DataTable dtmaterias = new DataTable();
+            registros = damaterias.Fill(dtmaterias);
+            if (registros > 0)
+            {
+                cboMateria.DataSource = dtmaterias;
+                cboMateria.DisplayMember = "NombreMateria";
+                cboMateria.ValueMember = "IdMateria";
+
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -99,7 +110,11 @@ namespace MesaDeExamen
                 Mensaje += "Ingrese el nro de llamado \r";
                 lValidado = false;
             }
-
+            if (cboMateria.SelectedItem.ToString().Length == 0)
+            {
+                Mensaje += "Ingrese la materia \r";
+                lValidado = false;
+            }
             if (lValidado == false)
             {
                 MessageBox.Show(Mensaje, "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -109,11 +124,11 @@ namespace MesaDeExamen
             string sentencia = string.Empty;
             if (textIdDet.Text.Trim() == "0")
             {
-                sentencia = string.Format("Insert Into detallemesadeexamen(idestudiante, idmesa, llamados, idcarrera) Values({0},{1},{2},{3})", cboEstudiante.SelectedValue, cboMesa.SelectedValue, cboLlamado.SelectedItem.ToString(), cboCarrera.SelectedValue);
+                sentencia = string.Format("Insert Into detallemesadeexamen(idestudiante, idmesa, llamados, idcarrera, idmateria) Values({0},{1},{2},{3},{4})", cboEstudiante.SelectedValue, cboMesa.SelectedValue, cboLlamado.SelectedItem.ToString(), cboCarrera.SelectedValue, cboMateria.SelectedValue);
             }
             else
             {
-                sentencia = string.Format("Update detallemesadeexamen set idestudiante = {0}, idmesa = {1}, llamados = {2}, idcarrera = {3} where IdDetalle = {4}", cboEstudiante.SelectedValue, cboMesa.SelectedValue, cboLlamado.SelectedItem.ToString(), cboCarrera.SelectedValue, textIdDet.Text);
+                sentencia = string.Format("Update detallemesadeexamen set idestudiante = {0}, idmesa = {1}, llamados = {2}, idcarrera = {3}, idmateria = {4} where IdDetalle = {5}", cboEstudiante.SelectedValue, cboMesa.SelectedValue, cboLlamado.SelectedItem.ToString(), cboCarrera.SelectedValue, cboMateria.SelectedValue, textIdDet.Text);
             }
 
             var comando = new MySqlCommand(sentencia, cone);
@@ -131,12 +146,14 @@ namespace MesaDeExamen
             cboCarrera.SelectedIndex = -1;
             cboMesa.SelectedIndex = -1;
             cboLlamado.SelectedIndex = -1;
+            cboMateria.SelectedIndex = -1;
 
 
             cboEstudiante.Enabled = false;
             cboCarrera.Enabled = false;
             cboLlamado.Enabled = false;
             cboMesa.Enabled = false;
+            cboMateria.Enabled = false;
 
 
             textIdDet.Focus();
@@ -195,7 +212,7 @@ namespace MesaDeExamen
                 {
                     cone.Open();
 
-                    
+
                     string sentencia = string.Format("SELECT * FROM detallemesadeexamen WHERE IdDetalle = {0}", idDetalle);
                     MySqlCommand comando = new MySqlCommand(sentencia, cone);
                     MySqlDataReader reader = comando.ExecuteReader();
@@ -208,12 +225,14 @@ namespace MesaDeExamen
                         cboCarrera.SelectedValue = reader["IdCarrera"];
                         cboMesa.SelectedValue = reader["IdMesa"];
                         cboLlamado.SelectedItem = reader["Llamados"].ToString();
+                        cboMateria.SelectedValue = reader["IdMateria"];
 
 
                         cboEstudiante.Enabled = true;
                         cboCarrera.Enabled = true;
                         cboLlamado.Enabled = true;
                         cboMesa.Enabled = true;
+                        cboMateria.Enabled = true;
 
                         MessageBox.Show("Puedes modificar los datos y luego guardar.");
                     }
@@ -233,59 +252,103 @@ namespace MesaDeExamen
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            string valorBusqueda = textBusqueda.Text.Trim();
+            // Valores de los campos de búsqueda
+            string idDetalle = textIdDetalleBusqueda.Text.Trim();
+            string estudiante = textEstudianteBusqueda.Text.Trim();
+            string carrera = textCarreraBusqueda.Text.Trim();
+        
+            string materia = textMateriaBusqueda.Text.Trim();
+            string llamados = textLlamadoBusqueda.Text.Trim();
 
-            if (string.IsNullOrEmpty(valorBusqueda))
+            // Empezamos a construir la consulta SQL
+            string consultaSQL = "Select detallemesadeexamen.IdDetalle,materias.NombreMateria,estudiantes.Apellido, estudiantes.Nombre, carreras.NombreCarrera, llamados.IdLlamado from detallemesadeexamen left join estudiantes on detallemesadeexamen.IdEstudiante= estudiantes.idEstudiante left join materias on detallemesadeexamen.IdMateria=materias.IdMateria left join carreras on detallemesadeexamen.IdCarrera=carreras.IdCarrera left join llamados on detallemesadeexamen.Llamados=llamados.IdLlamado WHERE ";
+
+            // Añadimos condiciones a la consulta según los campos llenos
+            if (!string.IsNullOrEmpty(idDetalle))
             {
-                MessageBox.Show("Por favor, ingrese un valor para la búsqueda.", "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                consultaSQL += " detallemesadeexamen.IdDetalle = @idDetalle";
             }
 
-            string consultaSQL;
-
-           
-            if (int.TryParse(valorBusqueda, out int idDetalle))
+            if (!string.IsNullOrEmpty(estudiante))
             {
-                
-                consultaSQL = string.Format("SELECT * FROM detallemesadeexamen WHERE IdDetalle = {0}", idDetalle);
+                consultaSQL += " detallemesadeexamen.IdEstudiante IN (SELECT IdEstudiante FROM Estudiantes WHERE Nombre LIKE @estudiante)";
             }
-            else
+
+            if (!string.IsNullOrEmpty(carrera))
             {
-                
-                consultaSQL = string.Format("SELECT * FROM detallemesadeexamen WHERE IdEstudiante IN (SELECT IdEstudiante FROM Estudiantes WHERE Nombre LIKE '%{0}%')", valorBusqueda);
+                consultaSQL += "detallemesadeexamen.IdCarrera IN (SELECT IdCarrera FROM Carreras WHERE NombreCarrera LIKE @carrera)";
+            }
+
+          
+
+            if (!string.IsNullOrEmpty(materia))
+            {
+                consultaSQL += "detallemesadeexamen.IdMateria IN (SELECT IdMateria FROM Materias WHERE NombreMateria LIKE @materia)";
+            }
+
+            if (!string.IsNullOrEmpty(llamados))
+            {
+                consultaSQL += "detallemesadeexamen.Llamados = @llamados";
             }
 
             using (MySqlConnection cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@"))
             {
                 cone.Open();
-                MySqlDataAdapter da = new MySqlDataAdapter(consultaSQL, cone);
-                DataTable dt = new DataTable();
-                int registros = da.Fill(dt);
 
-                if (registros > 0)
+                using (MySqlCommand cmd = new MySqlCommand(consultaSQL, cone))
                 {
-                  
-                    dgvDetalleMesa.DataSource = dt;
-
-                    
-                    if (dt.Rows.Count == 1)
+                    // Añadir los parámetros a la consulta si se han proporcionado valores
+                    if (!string.IsNullOrEmpty(idDetalle))
                     {
-                        DataRow fila = dt.Rows[0];
+                        cmd.Parameters.AddWithValue("@idDetalle", idDetalle);
+                    }
 
-                        
-                        textIdDet.Text = fila["IdDetalle"].ToString();
-                        cboEstudiante.SelectedValue = fila["IdEstudiante"];
-                        cboCarrera.SelectedValue = fila["IdCarrera"];
-                        cboMesa.SelectedValue = fila["IdMesa"];
-                        cboLlamado.SelectedItem = fila["Llamados"].ToString();
+                    if (!string.IsNullOrEmpty(estudiante))
+                    {
+                        cmd.Parameters.AddWithValue("@estudiante", "%" + estudiante + "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(carrera))
+                    {
+                        cmd.Parameters.AddWithValue("@carrera", "%" + carrera + "%");
+                    }
+
+                  
+
+                    if (!string.IsNullOrEmpty(materia))
+                    {
+                        cmd.Parameters.AddWithValue("@materia", "%" + materia + "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(llamados))
+                    {
+                        cmd.Parameters.AddWithValue("@llamados", llamados);
+                    }
+
+                    // Ejecutar la consulta y mostrar los resultados
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    int registros = da.Fill(dt);
+
+                    if (registros > 0)
+                    {
+                        dgvDetalleMesa.DataSource = dt;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron registros que coincidan con la búsqueda.", "Resultado de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dgvDetalleMesa.DataSource = null;
                     }
                 }
-                else
-                {
-                    MessageBox.Show("No se encontraron registros que coincidan con la búsqueda.", "Resultado de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvDetalleMesa.DataSource = null;  
-                }
             }
+
+
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

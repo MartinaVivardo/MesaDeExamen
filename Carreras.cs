@@ -202,10 +202,10 @@ namespace MesaDeExamen
                 {
                     cone.Open();
 
-                    
+
                     string sentencia = "SELECT * FROM carreras WHERE 1=1 ";
 
-                  
+
                     if (!string.IsNullOrEmpty(nombreABuscar))
                     {
                         sentencia += " AND nombrecarrera LIKE @nombrecarrera";
@@ -219,14 +219,14 @@ namespace MesaDeExamen
 
                     using (MySqlCommand cmd = new MySqlCommand(sentencia, cone))
                     {
-                        
+
                         if (!string.IsNullOrEmpty(nombreABuscar))
                         {
                             cmd.Parameters.AddWithValue("@nombrecarrera", "%" +
                                 "" + nombreABuscar + "%");
                         }
 
-                        
+
                         if (int.TryParse(idABuscar, out idCarreraActual))
                         {
                             cmd.Parameters.AddWithValue("@id", idCarreraActual);
