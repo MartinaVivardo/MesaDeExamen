@@ -256,7 +256,7 @@ namespace MesaDeExamen
             string idDetalle = textIdDetalleBusqueda.Text.Trim();
             string estudiante = textEstudianteBusqueda.Text.Trim();
             string carrera = textCarreraBusqueda.Text.Trim();
-        
+
             string materia = textMateriaBusqueda.Text.Trim();
             string llamados = textLlamadoBusqueda.Text.Trim();
 
@@ -279,7 +279,7 @@ namespace MesaDeExamen
                 consultaSQL += "detallemesadeexamen.IdCarrera IN (SELECT IdCarrera FROM Carreras WHERE NombreCarrera LIKE @carrera)";
             }
 
-          
+
 
             if (!string.IsNullOrEmpty(materia))
             {
@@ -313,7 +313,7 @@ namespace MesaDeExamen
                         cmd.Parameters.AddWithValue("@carrera", "%" + carrera + "%");
                     }
 
-                  
+
 
                     if (!string.IsNullOrEmpty(materia))
                     {
@@ -349,6 +349,16 @@ namespace MesaDeExamen
         private void label15_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textIdDet_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

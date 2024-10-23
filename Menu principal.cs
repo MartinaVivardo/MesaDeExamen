@@ -115,7 +115,16 @@ namespace MesaDeExamen
 
         private void CenterControls()
         {
-            
+            // Calcular el nuevo centro para cada control
+            foreach (Control control in this.Controls)
+            {
+                // Asegurarte de que los controles no sean null y tengan un tamaño definido
+                if (control != null && control.Name != "panel2" && control.Width > 0 && control.Height > 0)
+                {
+                    control.Left = (this.ClientSize.Width - control.Width) / 2;
+                    control.Top = (this.ClientSize.Height - control.Height) / 2;
+                }
+            }
         }
     }
 }
