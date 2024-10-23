@@ -46,6 +46,7 @@
             label6 = new Label();
             textBusqueda = new TextBox();
             textIdBusqueda = new TextBox();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvCarreras).BeginInit();
             SuspendLayout();
             // 
@@ -124,7 +125,7 @@
             // dgvCarreras
             // 
             dgvCarreras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCarreras.Location = new Point(454, 44);
+            dgvCarreras.Location = new Point(657, 44);
             dgvCarreras.Name = "dgvCarreras";
             dgvCarreras.RowHeadersWidth = 51;
             dgvCarreras.RowTemplate.Height = 25;
@@ -135,7 +136,7 @@
             // btnCancelar
             // 
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancelar.Location = new Point(138, 318);
+            btnCancelar.Location = new Point(513, 210);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(99, 40);
             btnCancelar.TabIndex = 51;
@@ -146,7 +147,7 @@
             // btnGuardar
             // 
             btnGuardar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnGuardar.Location = new Point(64, 272);
+            btnGuardar.Location = new Point(144, 210);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(93, 40);
             btnGuardar.TabIndex = 48;
@@ -157,7 +158,7 @@
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminar.Location = new Point(221, 272);
+            btnEliminar.Location = new Point(383, 210);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(99, 40);
             btnEliminar.TabIndex = 47;
@@ -168,7 +169,7 @@
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConsultar.Location = new Point(138, 472);
+            btnConsultar.Location = new Point(420, 377);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(99, 40);
             btnConsultar.TabIndex = 46;
@@ -179,7 +180,7 @@
             // btnModificar
             // 
             btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.Location = new Point(221, 198);
+            btnModificar.Location = new Point(263, 210);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(98, 40);
             btnModificar.TabIndex = 45;
@@ -190,7 +191,7 @@
             // btnAgregar
             // 
             btnAgregar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAgregar.Location = new Point(64, 198);
+            btnAgregar.Location = new Point(33, 210);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(93, 40);
             btnAgregar.TabIndex = 44;
@@ -202,25 +203,25 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(17, 390);
+            label5.Location = new Point(24, 370);
             label5.Name = "label5";
-            label5.Size = new Size(147, 20);
+            label5.Size = new Size(71, 20);
             label5.TabIndex = 52;
-            label5.Text = "Buscar por nombre:";
+            label5.Text = "Nombre:";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(60, 420);
+            label6.Location = new Point(17, 416);
             label6.Name = "label6";
-            label6.Size = new Size(106, 20);
+            label6.Size = new Size(82, 20);
             label6.TabIndex = 53;
-            label6.Text = "Buscar por Id:";
+            label6.Text = " IdCarrera:";
             // 
             // textBusqueda
             // 
-            textBusqueda.Location = new Point(190, 391);
+            textBusqueda.Location = new Point(190, 367);
             textBusqueda.Margin = new Padding(3, 2, 3, 2);
             textBusqueda.Name = "textBusqueda";
             textBusqueda.Size = new Size(110, 23);
@@ -234,11 +235,22 @@
             textIdBusqueda.Size = new Size(110, 23);
             textIdBusqueda.TabIndex = 55;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(19, 317);
+            label7.Name = "label7";
+            label7.Size = new Size(89, 20);
+            label7.TabIndex = 56;
+            label7.Text = "Buscar por:";
+            // 
             // Carreras
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1100, 600);
+            Controls.Add(label7);
             Controls.Add(textIdBusqueda);
             Controls.Add(textBusqueda);
             Controls.Add(label6);
@@ -286,5 +298,6 @@
         private Label label6;
         private TextBox textBusqueda;
         private TextBox textIdBusqueda;
+        private Label label7;
     }
 }

@@ -112,7 +112,7 @@ namespace MesaDeExamen
         private void MesaDeExamen_Load(object sender, EventArgs e)
         {
             var cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString());
-            MySqlDataAdapter da = new MySqlDataAdapter("Select * from mesaexamen", cone);
+            MySqlDataAdapter da = new MySqlDataAdapter("SELECT mesaexamen.IdMesaExamen, materias.NombreMateria, llamados.Fecha, carreras.NombreCarrera from mesaexamen left join materias on mesaexamen.IdMateria=materias.NombreMateria left join carreras on mesaexamen.IdCarrera=carreras.NombreCarrera", cone);
             DataTable dt = new DataTable();
             int registros = da.Fill(dt);
             if (registros > 0)
@@ -140,14 +140,14 @@ namespace MesaDeExamen
                 cboIdMateria.ValueMember = "idmateria";
             }
 
-            MySqlDataAdapter daLlamados = new MySqlDataAdapter("Select idllamado, concat(mes,'-',año) AS Periodo from llamados where activo = 1", cone);
+            MySqlDataAdapter daLlamados = new MySqlDataAdapter("Select Idllamado, concat(Month(Fecha),'-',Year(Fecha)) AS Periodo from Llamados where Activo = 1", cone);
             DataTable dtLlamados = new DataTable();
             registros = daLlamados.Fill(dtLlamados);
             if (registros > 0)
             {
                 cboLlamado.DataSource = dtLlamados;
                 cboLlamado.DisplayMember = "Periodo";
-                cboLlamado.ValueMember = "idllamado";
+                cboLlamado.ValueMember = "Idllamado";
             }
 
             MySqlDataAdapter daProfesor = new MySqlDataAdapter("Select * from profesores Order By nombre", cone);
@@ -212,70 +212,48 @@ namespace MesaDeExamen
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            string nombreABuscar = textBusqueda.Text.Trim();
-            string idABuscar = textIdBusqueda.Text.Trim();
+            // Obtener los valores de los controles
+            string fecha = dtpFecha.Value.ToString("yyyy-MM-dd");
+            int idMateria = Convert.ToInt32(cboIdMateria.SelectedValue);
+            int idMesa = 0;
 
-            if (string.IsNullOrEmpty(nombreABuscar) && string.IsNullOrEmpty(idABuscar))
+            // Verificar si el campo de IdMesa tiene un valor válido
+            if (!string.IsNullOrEmpty(textIdMesa.Text))
             {
-                MessageBox.Show("Por favor, ingrese un nombre o un ID para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                int.TryParse(textIdMesa.Text, out idMesa);
             }
 
-            using (var cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString())
-)
+            // Construir la consulta SQL
+            string query = "SELECT mesaexamen.IdMesaExamen, materias.NombreMateria, llamados.Fecha, carreras.NombreCarrera from mesaexamen left join materias on mesaexamen.IdMateria=materias.NombreMateria left join carreras on mesaexamen.IdCarrera=carreras.NombreCarrera";
+
+            // Agregar filtro por fecha
+            if (dtpFecha.Checked)
             {
-                try
-                {
-                    cone.Open();
+                query += $" AND fecha = '{fecha}'";
+            }
 
+            // Agregar filtro por idMateria
+            if (idMateria > 0)
+            {
+                query += $" AND idMateria = {idMateria}";
+            }
 
-                    string sentencia = "SELECT * FROM mesaexamen WHERE 1=1 ";
+            // Agregar filtro por idMesa si existe
+            if (idMesa > 0)
+            {
+                query += $" AND idMesaexamen = {idMesa}";
+            }
 
+            // Conectar a la base de datos y ejecutar la consulta
+            using (MySqlConnection cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString()))
+            {
+                cone.Open();
+                MySqlDataAdapter da = new MySqlDataAdapter(query, cone);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
-                    if (!string.IsNullOrEmpty(nombreABuscar))
-                    {
-                        sentencia += " AND nombrecarrera LIKE @nombrecarrera";
-                    }
-
-                    int idProfesor;
-                    if (int.TryParse(idABuscar, out idProfesor))
-                    {
-                        sentencia += " AND IdMesaExamen = @idmesa";
-                    }
-
-                    using (MySqlCommand cmd = new MySqlCommand(sentencia, cone))
-                    {
-
-                        if (!string.IsNullOrEmpty(nombreABuscar))
-                        {
-                            cmd.Parameters.AddWithValue("@nombrecarrera", "%" +
-                                "" + nombreABuscar + "%");
-                        }
-
-
-                        if (int.TryParse(idABuscar, out idMesaActual))
-                        {
-                            cmd.Parameters.AddWithValue("@idmesa", idMesaActual);
-                        }
-
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        if (dt.Rows.Count > 0)
-                        {
-                            dgvMesa.DataSource = dt;
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontraron mesas con ese nombre o ID.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ocurrió un error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                // Mostrar los resultados en el DataGridView
+                dgvMesa.DataSource = dt;
             }
 
         }

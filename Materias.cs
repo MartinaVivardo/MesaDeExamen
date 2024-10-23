@@ -45,7 +45,7 @@ namespace MesaDeExamen
                 Mensaje += String.Format("Ingrese nombre del profesor\r");
                 lValidado = false;
             }
-            if (textAño.Text.Trim().Length == 0)
+            if (cboAño.Text.Trim().Length == 0)
             {
                 Mensaje += String.Format("Ingrese Año de materia \r");
                 lValidado = false;
@@ -64,9 +64,9 @@ namespace MesaDeExamen
             }
             string sentencia = string.Empty;
             if (textIdMateria.Text.Trim().Length == 0)
-                sentencia = string.Format("Insert Into Materias(NombreMateria, IdCarrera, Año, IdProfesor) Values('{0}',{1},{2},{3})", textNomb.Text.Trim(), cboCarrera.SelectedValue, textAño.Text.Trim(), cboProf.SelectedValue);
+                sentencia = string.Format("Insert Into Materias(NombreMateria, IdCarrera, Año, IdProfesor) Values('{0}',{1},{2},{3})", textNomb.Text.Trim(), cboCarrera.SelectedValue, cboAño.Text.Trim(), cboProf.SelectedValue);
             else
-                sentencia = string.Format("Update materias set NombreMateria = '{0}', IdCarrera = {1}, Año = {2} , IdProfesor = {3} where IdMateria = {4}", textNomb.Text.Trim(), cboCarrera.SelectedValue, textAño.Text.Trim(), cboProf.SelectedValue, textIdMateria.Text.Trim());
+                sentencia = string.Format("Update materias set NombreMateria = '{0}', IdCarrera = {1}, Año = {2} , IdProfesor = {3} where IdMateria = {4}", textNomb.Text.Trim(), cboCarrera.SelectedValue, cboAño.Text.Trim(), cboProf.SelectedValue, textIdMateria.Text.Trim());
 
             var comando = new MySqlCommand(sentencia, cone);
             comando.ExecuteNonQuery();
@@ -79,8 +79,8 @@ namespace MesaDeExamen
             textNomb.Enabled = true;
             cboCarrera.Enabled = true;
             cboProf.Enabled = true;
-            textAño.Text = "0";
-            textIdMateria.Text= "0";
+            cboAño.Enabled = true;
+            textIdMateria.Text = "0";
             textNomb.Clear();
             textIdMateria.Enabled = true;
             textIdMateria.Clear();
@@ -132,7 +132,7 @@ namespace MesaDeExamen
 
 
             textNomb.Text = dgvMaterias.CurrentRow.Cells["NombreMateria"].Value.ToString();
-            textAño.Text = dgvMaterias.CurrentRow.Cells["Año"].Value.ToString();
+            cboAño.Text = dgvMaterias.CurrentRow.Cells["Año"].Value.ToString();
             textIdMateria.Text = dgvMaterias.CurrentRow.Cells["IdMateria"].Value.ToString();
             cboCarrera.Text = dgvMaterias.CurrentRow.Cells["IdCarrera"].Value.ToString();
             cboProf.Text = dgvMaterias.CurrentRow.Cells["IdProfesor"].Value.ToString();
@@ -183,7 +183,7 @@ namespace MesaDeExamen
 
                 textNomb.Text = nombreOriginal;
 
-                textAño.Text = AñoOriginal.ToString();
+                cboAño.Text = AñoOriginal.ToString();
             }
         }
 
@@ -197,7 +197,7 @@ namespace MesaDeExamen
             }
 
 
-            if (textNomb.Text.Trim().Length == 0 || textAño.Text.Trim().Length == 0 || cboCarrera.SelectedValue == null || cboProf.SelectedValue == null)
+            if (textNomb.Text.Trim().Length == 0 || cboAño.Text.Trim().Length == 0 || cboCarrera.SelectedValue == null || cboProf.SelectedValue == null)
             {
                 MessageBox.Show("Debe completar todos los campos obligatorios antes de modificar.", "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -216,7 +216,7 @@ namespace MesaDeExamen
                         "UPDATE materias SET NombreMateria = '{0}', IdCarrera = {1}, Año = {2}, IdProfesor = {3} WHERE IdMateria = {4}",
                         textNomb.Text.Trim(),
                         cboCarrera.SelectedValue,
-                        textAño.Text.Trim(),
+                        cboAño.Text.Trim(),
                         cboProf.SelectedValue,
                         textIdMateria.Text.Trim()
                     );
@@ -317,6 +317,26 @@ namespace MesaDeExamen
         private void cboProf_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormCarreras_Click(object sender, EventArgs e)
+        {
+            // Crea una nueva instancia del formulario Carreras
+            Carreras formCarreras = new Carreras();
+
+            // Muestra el formulario de carreras
+            formCarreras.Show();
+        }
+
+        private void formularioProf_Click(object sender, EventArgs e)
+        {
+            Profesores formProfesores = new Profesores();
+          formProfesores.Show();
         }
     }
 }

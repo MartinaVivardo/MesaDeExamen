@@ -53,7 +53,12 @@
             textBusqueda = new TextBox();
             btnGuardar = new Button();
             label8 = new Label();
-            textBusquedaId = new TextBox();
+            label10 = new Label();
+            textBox1 = new TextBox();
+            label11 = new Label();
+            label12 = new Label();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvEstudiantes).BeginInit();
             SuspendLayout();
             // 
@@ -70,7 +75,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(354, 9);
+            label1.Location = new Point(823, 9);
             label1.Name = "label1";
             label1.Size = new Size(83, 20);
             label1.TabIndex = 1;
@@ -81,7 +86,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(23, 87);
+            label2.Location = new Point(238, 26);
             label2.Name = "label2";
             label2.Size = new Size(71, 20);
             label2.TabIndex = 2;
@@ -91,7 +96,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(228, 90);
+            label3.Location = new Point(36, 83);
             label3.Name = "label3";
             label3.Size = new Size(71, 20);
             label3.TabIndex = 3;
@@ -142,7 +147,7 @@
             // 
             label.AutoSize = true;
             label.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label.Location = new Point(209, 218);
+            label.Location = new Point(239, 86);
             label.Name = "label";
             label.Size = new Size(64, 20);
             label.TabIndex = 8;
@@ -152,7 +157,7 @@
             // 
             textApe.Enabled = false;
             textApe.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textApe.Location = new Point(114, 87);
+            textApe.Location = new Point(329, 26);
             textApe.Name = "textApe";
             textApe.Size = new Size(100, 27);
             textApe.TabIndex = 9;
@@ -171,7 +176,7 @@
             // 
             textNom.Enabled = false;
             textNom.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textNom.Location = new Point(309, 90);
+            textNom.Location = new Point(117, 83);
             textNom.Name = "textNom";
             textNom.Size = new Size(100, 27);
             textNom.TabIndex = 12;
@@ -204,7 +209,7 @@
             cboIdCarrera.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             cboIdCarrera.FormattingEnabled = true;
             cboIdCarrera.Items.AddRange(new object[] { "Analista de Sistemas", "Psicopedagogia", "Inicial" });
-            cboIdCarrera.Location = new Point(279, 215);
+            cboIdCarrera.Location = new Point(309, 83);
             cboIdCarrera.Name = "cboIdCarrera";
             cboIdCarrera.Size = new Size(130, 28);
             cboIdCarrera.TabIndex = 20;
@@ -213,7 +218,7 @@
             // dgvEstudiantes
             // 
             dgvEstudiantes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEstudiantes.Location = new Point(426, 56);
+            dgvEstudiantes.Location = new Point(623, 55);
             dgvEstudiantes.Name = "dgvEstudiantes";
             dgvEstudiantes.RowTemplate.Height = 25;
             dgvEstudiantes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -224,7 +229,7 @@
             // btnAgregar
             // 
             btnAgregar.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAgregar.Location = new Point(47, 265);
+            btnAgregar.Location = new Point(23, 265);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(85, 38);
             btnAgregar.TabIndex = 16;
@@ -235,7 +240,7 @@
             // btnModificar
             // 
             btnModificar.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.Location = new Point(203, 265);
+            btnModificar.Location = new Point(132, 265);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(85, 38);
             btnModificar.TabIndex = 17;
@@ -246,7 +251,7 @@
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConsultar.Location = new Point(324, 448);
+            btnConsultar.Location = new Point(505, 373);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(85, 38);
             btnConsultar.TabIndex = 18;
@@ -257,7 +262,7 @@
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminar.Location = new Point(203, 332);
+            btnEliminar.Location = new Point(354, 267);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(85, 38);
             btnEliminar.TabIndex = 19;
@@ -268,7 +273,7 @@
             // btnCancelar
             // 
             btnCancelar.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancelar.Location = new Point(137, 376);
+            btnCancelar.Location = new Point(468, 267);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(85, 38);
             btnCancelar.TabIndex = 22;
@@ -280,16 +285,16 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(18, 438);
+            label9.Location = new Point(17, 409);
             label9.Name = "label9";
-            label9.Size = new Size(147, 20);
+            label9.Size = new Size(75, 20);
             label9.TabIndex = 44;
-            label9.Text = "Buscar por nombre:";
+            label9.Text = " Nombre:";
             // 
             // textBusqueda
             // 
             textBusqueda.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBusqueda.Location = new Point(188, 438);
+            textBusqueda.Location = new Point(171, 409);
             textBusqueda.Name = "textBusqueda";
             textBusqueda.Size = new Size(100, 27);
             textBusqueda.TabIndex = 43;
@@ -297,7 +302,7 @@
             // btnGuardar
             // 
             btnGuardar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnGuardar.Location = new Point(47, 330);
+            btnGuardar.Location = new Point(238, 265);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(93, 40);
             btnGuardar.TabIndex = 91;
@@ -309,26 +314,77 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(18, 466);
+            label8.Location = new Point(17, 359);
             label8.Name = "label8";
-            label8.Size = new Size(106, 20);
+            label8.Size = new Size(101, 20);
             label8.TabIndex = 92;
-            label8.Text = "Buscar por Id:";
+            label8.Text = "IdEstudiante:";
             // 
-            // textBusquedaId
+            // label10
             // 
-            textBusquedaId.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBusquedaId.Location = new Point(188, 471);
-            textBusquedaId.Name = "textBusquedaId";
-            textBusquedaId.Size = new Size(100, 27);
-            textBusquedaId.TabIndex = 93;
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(36, 323);
+            label10.Name = "label10";
+            label10.Size = new Size(89, 20);
+            label10.TabIndex = 95;
+            label10.Text = "Buscar por:";
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textBox1.Location = new Point(171, 450);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 27);
+            textBox1.TabIndex = 94;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.Location = new Point(18, 450);
+            label11.Name = "label11";
+            label11.Size = new Size(71, 20);
+            label11.TabIndex = 96;
+            label11.Text = "Apellido:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(18, 497);
+            label12.Name = "label12";
+            label12.Size = new Size(124, 20);
+            label12.TabIndex = 97;
+            label12.Text = "Nro documento:";
+            // 
+            // textBox2
+            // 
+            textBox2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textBox2.Location = new Point(171, 494);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(100, 27);
+            textBox2.TabIndex = 98;
+            // 
+            // textBox3
+            // 
+            textBox3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            textBox3.Location = new Point(171, 359);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(100, 27);
+            textBox3.TabIndex = 99;
             // 
             // Estudiantes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(904, 532);
-            Controls.Add(textBusquedaId);
+            ClientSize = new Size(1084, 561);
+            Controls.Add(textBox3);
+            Controls.Add(textBox2);
+            Controls.Add(label12);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(textBox1);
             Controls.Add(label8);
             Controls.Add(btnGuardar);
             Controls.Add(label9);
@@ -354,7 +410,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textIdEstudiante);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Estudiantes";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgvEstudiantes).EndInit();
@@ -389,6 +447,11 @@
         private TextBox textBusqueda;
         private Button btnGuardar;
         private Label label8;
-        private TextBox textBusquedaId;
+        private Label label10;
+        private TextBox textBox1;
+        private Label label11;
+        private Label label12;
+        private TextBox textBox2;
+        private TextBox textBox3;
     }
 }

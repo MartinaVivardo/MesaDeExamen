@@ -147,71 +147,87 @@ namespace MesaDeExamen
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
+            // Valores de los campos de búsqueda
+            string idEstudiante = textBox3.Text.Trim();
+            string nombre = textBusqueda.Text.Trim();
+            string apellido = textBox1.Text.Trim();
+            string documento = textBox2.Text.Trim();
 
-            string nombreABuscar = textBusqueda.Text.Trim();
-            string idABuscar = textBusquedaId.Text.Trim();
+            // Comenzamos a construir la consulta SQL
+            string consultaSQL = "SELECT * FROM Estudiantes WHERE 1=1";
 
-
-            if (string.IsNullOrEmpty(nombreABuscar) && string.IsNullOrEmpty(idABuscar))
+            // Añadimos condiciones a la consulta según los campos llenos
+            if (!string.IsNullOrEmpty(idEstudiante))
             {
-                MessageBox.Show("Por favor, ingrese un nombre o un ID para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                consultaSQL += " AND IdEstudiante = @idEstudiante";
             }
 
-            using (MySqlConnection cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString()))
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                consultaSQL += " AND Nombre LIKE @nombre";
+            }
+
+            if (!string.IsNullOrEmpty(apellido))
+            {
+                consultaSQL += " AND Apellido LIKE @apellido";
+            }
+
+            if (!string.IsNullOrEmpty(documento))
+            {
+                consultaSQL += " AND Documento = @documento";
+            }
+
+            // Conexión a la base de datos y ejecución de la consulta
+            using (MySqlConnection cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@"))
             {
                 try
                 {
                     cone.Open();
-
-
-                    string sentencia = "SELECT * FROM Estudiantes WHERE 1=1";
-
-
-                    if (!string.IsNullOrEmpty(nombreABuscar))
+                    using (MySqlCommand cmd = new MySqlCommand(consultaSQL, cone))
                     {
-                        sentencia += " AND nombre LIKE @nombre";
-                    }
-
-
-                    int idMateria;
-                    if (int.TryParse(idABuscar, out idMateria))
-                    {
-                        sentencia += " AND IdEstudiante = @id";
-                    }
-
-                    using (MySqlCommand cmd = new MySqlCommand(sentencia, cone))
-                    {
-
-                        if (!string.IsNullOrEmpty(nombreABuscar))
+                        // Añadir los parámetros a la consulta si se han proporcionado valores
+                        if (!string.IsNullOrEmpty(idEstudiante))
                         {
-                            cmd.Parameters.AddWithValue("@nombre", "%" + nombreABuscar + "%");
-                        }
-                        if (int.TryParse(idABuscar, out idMateria))
-                        {
-                            cmd.Parameters.AddWithValue("@id", idMateria);
+                            cmd.Parameters.AddWithValue("@idEstudiante", idEstudiante);
                         }
 
+                        if (!string.IsNullOrEmpty(nombre))
+                        {
+                            cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                        }
 
+                        if (!string.IsNullOrEmpty(apellido))
+                        {
+                            cmd.Parameters.AddWithValue("@apellido", "%" + apellido + "%");
+                        }
+
+                        if (!string.IsNullOrEmpty(documento))
+                        {
+                            cmd.Parameters.AddWithValue("@documento", documento);
+                        }
+
+                        // Ejecutar la consulta y mostrar los resultados
                         MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
-                        da.Fill(dt);
+                        int registros = da.Fill(dt);
 
-                        if (dt.Rows.Count > 0)
+                        if (registros > 0)
                         {
                             dgvEstudiantes.DataSource = dt;
                         }
                         else
                         {
-                            MessageBox.Show("No se encontraron estudiantes con ese nombre o ID.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("No se encontraron registros que coincidan con la búsqueda.", "Resultado de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dgvEstudiantes.DataSource = null;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ocurrió un error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
 
         }
 

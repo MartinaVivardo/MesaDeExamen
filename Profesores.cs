@@ -162,10 +162,11 @@ namespace MesaDeExamen
         {
             string nombreABuscar = textBusqueda.Text.Trim();
             string idABuscar = textIdBusqueda.Text.Trim();
+            string apellidoABuscar = textApellidoBusqueda.Text.Trim(); // Nuevo campo para el apellido
 
-            if (string.IsNullOrEmpty(nombreABuscar) && string.IsNullOrEmpty(idABuscar))
+            if (string.IsNullOrEmpty(nombreABuscar) && string.IsNullOrEmpty(idABuscar) && string.IsNullOrEmpty(apellidoABuscar))
             {
-                MessageBox.Show("Por favor, ingrese un nombre o un ID para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingrese un nombre, apellido o un ID para buscar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -184,6 +185,11 @@ namespace MesaDeExamen
                         sentencia += " AND nombre LIKE @nombre";
                     }
 
+                    if (!string.IsNullOrEmpty(apellidoABuscar)) // Condición para buscar por apellido
+                    {
+                        sentencia += " AND apellido LIKE @apellido";
+                    }
+
                     int idProfesor;
                     if (int.TryParse(idABuscar, out idProfesor))
                     {
@@ -196,6 +202,12 @@ namespace MesaDeExamen
                         if (!string.IsNullOrEmpty(nombreABuscar))
                         {
                             cmd.Parameters.AddWithValue("@nombre", "%" + nombreABuscar + "%");
+                        }
+
+                        // Agrega el parámetro de apellido si se ingresó
+                        if (!string.IsNullOrEmpty(apellidoABuscar))
+                        {
+                            cmd.Parameters.AddWithValue("@apellido", "%" + apellidoABuscar + "%");
                         }
 
                         // Agrega el parámetro de ID si se ingresó un número válido
@@ -214,7 +226,7 @@ namespace MesaDeExamen
                         }
                         else
                         {
-                            MessageBox.Show("No se encontraron profesores con ese nombre o ID.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("No se encontraron profesores con ese nombre, apellido o ID.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }

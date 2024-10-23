@@ -18,9 +18,6 @@ namespace MesaDeExamen
 
         private bool esNuevoRegistro;
         private int IdLlamadoActual;
-
-        private string añoOriginal;
-        private string mesOriginal;
         private string nrollamadoOriginal;
 
         public Llamados()
@@ -32,7 +29,6 @@ namespace MesaDeExamen
 
         private void Llamados_Load(object sender, EventArgs e)
         {
-
             MySqlConnection conexión = new MySqlConnection("Data Source=localhost; Initial Catalog = mesasdeexamenes;Uid = root; pwd = martinaanalista@");
             MySqlDataAdapter da = new MySqlDataAdapter("Select * from Llamados", conexión);
             DataTable dt = new DataTable();
@@ -48,15 +44,10 @@ namespace MesaDeExamen
         {
             textNroLlamado.Enabled = true;
             textNroLlamado.Clear();
-            textAño.Enabled = true;
-            textAño.Clear();
+            dateTimePickerFecha.Enabled = true;
             cboActivo.Enabled = true;
-            textMes.Enabled = true;
-            textMes.Clear();
             textIdLlamado.Text = "0";
             textNroLlamado.Focus();
-
-
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -71,14 +62,9 @@ namespace MesaDeExamen
                 Mensaje += String.Format("Ingrese el numero del llamado \r");
                 lValidado = false;
             }
-            if (textAño.Text.Trim().Length == 0)
+            if (dateTimePickerFecha.ToString().Length == 0)
             {
-                Mensaje += "Ingrese el año \r";
-                lValidado = false;
-            }
-            if (textMes.Text.Trim().Length == 0)
-            {
-                Mensaje += "Ingrese el mes \r";
+                Mensaje += "Ingrese la fecha\r";
                 lValidado = false;
             }
             if (cboActivo.SelectedItem.ToString().Length == 0)
@@ -86,7 +72,6 @@ namespace MesaDeExamen
                 Mensaje += "Seleccione si el llamado se encuentra activo \r";
                 lValidado = false;
             }
-
             if (lValidado == false)
             {
                 MessageBox.Show(Mensaje, "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -96,9 +81,11 @@ namespace MesaDeExamen
             int activo = cboActivo.SelectedItem.ToString() == "Si" ? 1 : 0;
             string sentencia = string.Empty;
             if (textIdLlamado.Text.Trim() == "0")
-                sentencia = string.Format("Insert Into llamados( nrollamado, año, activo, mes) Values({0},{1},{2},{3})", textNroLlamado.Text.Trim(), textAño.Text.Trim(), activo, textMes.Text.Trim());
+                sentencia = string.Format("Insert Into llamados(nrollamado, activo, fecha) Values({0}, {1}, {2})",
+            textNroLlamado.Text.Trim(), activo, dateTimePickerFecha.Value.ToString("yyyy-MM-dd"));
             else
-                sentencia = string.Format("Update llamados set nrollamado = {0}, año = {1}, mes = {2}, activo = {3} where idllamado = {4}", textNroLlamado.Text.Trim(), textAño.Text.Trim(), textMes.Text.Trim(), activo, textIdLlamado.Text.Trim());
+                sentencia = string.Format("Update llamados set nrollamado = {0}, activo = {1}, fecha = '{2}' where idllamado = {3}",
+          textNroLlamado.Text.Trim(), activo, dateTimePickerFecha.Value.ToString("yyyy-MM-dd"), textIdLlamado.Text.Trim());
 
             var comando = new MySqlCommand(sentencia, cone);
             comando.ExecuteNonQuery();
@@ -110,39 +97,26 @@ namespace MesaDeExamen
         {
             textNroLlamado.Text = dgvLlamados.CurrentRow.Cells["NroLlamado"].Value.ToString();
             cboActivo.Text = dgvLlamados.CurrentRow.Cells["Activo"].Value.ToString();
-            textAño.Text = dgvLlamados.CurrentRow.Cells["Año"].Value.ToString();
-            textMes.Text = dgvLlamados.CurrentRow.Cells["Mes"].Value.ToString();
-
+            dateTimePickerFecha.Text = dgvLlamados.CurrentRow.Cells["Fecha"].Value.ToString();
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvLlamados.SelectedRows.Count > 0)
             {
-
                 int idLlamado = Convert.ToInt32(textIdLlamado.Text.Trim());
-
-
                 var confirmResult = MessageBox.Show("¿Estás seguro de que deseas eliminar este registro?",
                                                     "Confirmar Eliminación",
                                                     MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)
                 {
-
                     using (MySqlConnection cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@"))
                     {
                         cone.Open();
-
-
                         string sentencia = string.Format("DELETE FROM llamados WHERE IdLlamado = {0}", idLlamado);
                         MySqlCommand comando = new MySqlCommand(sentencia, cone);
-
                         comando.ExecuteNonQuery();
-
-
                         Llamados_Load(sender, e);
                     }
-
                     MessageBox.Show("Registro eliminado correctamente.");
                 }
             }
@@ -150,80 +124,80 @@ namespace MesaDeExamen
             {
                 MessageBox.Show("Por favor, selecciona un registro para eliminar.");
             }
-
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             textNroLlamado.Enabled = true;
             cboActivo.Enabled = true;
-            textAño.Enabled = true;
-            textMes.Enabled = true;
+            dateTimePickerFecha.Enabled = true;
             textNroLlamado.Focus();
-
-
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             if (!esNuevoRegistro && IdLlamadoActual != -1)
             {
-
                 textNroLlamado.Text = nrollamadoOriginal;
-                textAño.Text = añoOriginal;
-                textMes.Text = mesOriginal;
             }
-
         }
         private void dgvLlamados_SelectionChanged(object sender, EventArgs e)
         {
             textNroLlamado.Text = dgvLlamados.CurrentRow.Cells["Nrollamado"].Value.ToString();
-            textAño.Text = dgvLlamados.CurrentRow.Cells["Año"].Value.ToString();
-            textMes.Text = dgvLlamados.CurrentRow.Cells["Mes"].Value.ToString();
+            dateTimePickerFecha.Text = dgvLlamados.CurrentRow.Cells["Fecha"].Value.ToString();
             textIdLlamado.Text = dgvLlamados.CurrentRow.Cells["IdLlamado"].Value.ToString();
             cboActivo.Text = dgvLlamados.CurrentRow.Cells["Activo"].Value.ToString();
         }
-
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            
-            string idLlamado = textIdBusca.Text.Trim();  
-            string nroLlamado = textNroLlamadoBuscar.Text.Trim();  
+            string filtro = string.Empty;
 
-            
-            string consulta = "SELECT * FROM llamados WHERE 1=1"; 
-
-            if (!string.IsNullOrEmpty(idLlamado))
+            if (!string.IsNullOrEmpty(txtIdLlamadoConsulta.Text.Trim()))
             {
-                consulta += $" AND idllamado = {idLlamado}";
+                filtro = $"WHERE IdLlamado = {txtIdLlamadoConsulta.Text.Trim()}";
+            }
+            else if (!string.IsNullOrEmpty(txtNroLlamadoConsulta.Text.Trim()))
+            {
+                filtro = $"WHERE Nrollamado = {txtNroLlamadoConsulta.Text.Trim()}";
+            }
+            else if (dateTimePickerFechaConsulta.Value != null)
+            {
+                filtro = $"WHERE Fecha = '{dateTimePickerFechaConsulta.Value.ToString("yyyy-MM-dd")}'";
             }
 
-            if (!string.IsNullOrEmpty(nroLlamado))
+            if (string.IsNullOrEmpty(filtro))
             {
-                consulta += $" AND nrollamado LIKE '%{nroLlamado}%'";
+                MessageBox.Show("Por favor, ingrese un criterio de búsqueda.", "Consulta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            
             try
             {
-                var cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@");
-                MySqlDataAdapter da = new MySqlDataAdapter(consulta, cone);
-                DataTable dt = new DataTable();
-                int registros = da.Fill(dt);
-                if (registros > 0)
+                using (MySqlConnection conexión = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@"))
                 {
-                    dgvLlamados.DataSource = dt;
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron resultados.", "Consulta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvLlamados.DataSource = null;  // Limpiar los datos si no hay resultados
+                    MySqlDataAdapter da = new MySqlDataAdapter($"SELECT * FROM Llamados {filtro}", conexión);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        dgvLlamados.DataSource = dt;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontraron resultados con los criterios ingresados.", "Consulta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dgvLlamados.DataSource = null;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al realizar la búsqueda: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al realizar la consulta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dateTimePickerFecha_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

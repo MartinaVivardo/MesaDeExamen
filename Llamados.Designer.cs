@@ -29,19 +29,15 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textAño = new TextBox();
-            label5 = new Label();
             label6 = new Label();
             textNroLlamado = new TextBox();
             label4 = new Label();
-            textMes = new TextBox();
-            label3 = new Label();
             textIdLlamado = new TextBox();
             label2 = new Label();
             dgvLlamados = new DataGridView();
             btnCancelar = new Button();
             label8 = new Label();
-            textNroLlamadoBuscar = new TextBox();
+            txtIdLlamadoConsulta = new TextBox();
             btnGuardar = new Button();
             btnEliminar = new Button();
             btnConsultar = new Button();
@@ -50,7 +46,12 @@
             label7 = new Label();
             cboActivo = new ComboBox();
             label9 = new Label();
-            textIdBusca = new TextBox();
+            txtNroLlamadoConsulta = new TextBox();
+            label3 = new Label();
+            dateTimePickerFecha = new DateTimePicker();
+            label5 = new Label();
+            label10 = new Label();
+            dateTimePickerFechaConsulta = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dgvLlamados).BeginInit();
             SuspendLayout();
             // 
@@ -63,24 +64,6 @@
             label1.Size = new Size(91, 20);
             label1.TabIndex = 0;
             label1.Text = "LLAMADOS";
-            // 
-            // textAño
-            // 
-            textAño.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textAño.Location = new Point(345, 115);
-            textAño.Name = "textAño";
-            textAño.Size = new Size(72, 27);
-            textAño.TabIndex = 52;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(258, 122);
-            label5.Name = "label5";
-            label5.Size = new Size(42, 20);
-            label5.TabIndex = 51;
-            label5.Text = "Año:";
             // 
             // label6
             // 
@@ -109,24 +92,6 @@
             label4.Size = new Size(100, 20);
             label4.TabIndex = 43;
             label4.Text = "NroLlamado:";
-            // 
-            // textMes
-            // 
-            textMes.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textMes.Location = new Point(354, 168);
-            textMes.Name = "textMes";
-            textMes.Size = new Size(52, 27);
-            textMes.TabIndex = 42;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(258, 175);
-            label3.Name = "label3";
-            label3.Size = new Size(42, 20);
-            label3.TabIndex = 41;
-            label3.Text = "Mes:";
             // 
             // textIdLlamado
             // 
@@ -160,7 +125,7 @@
             // btnCancelar
             // 
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancelar.Location = new Point(155, 334);
+            btnCancelar.Location = new Point(335, 256);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(99, 40);
             btnCancelar.TabIndex = 102;
@@ -172,24 +137,24 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(13, 402);
+            label8.Location = new Point(18, 404);
             label8.Name = "label8";
-            label8.Size = new Size(179, 20);
+            label8.Size = new Size(104, 20);
             label8.TabIndex = 101;
-            label8.Text = "Buscar por NroLlamado:";
+            label8.Text = " NroLlamado:";
             // 
-            // textNroLlamadoBuscar
+            // txtIdLlamadoConsulta
             // 
-            textNroLlamadoBuscar.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textNroLlamadoBuscar.Location = new Point(198, 402);
-            textNroLlamadoBuscar.Name = "textNroLlamadoBuscar";
-            textNroLlamadoBuscar.Size = new Size(100, 27);
-            textNroLlamadoBuscar.TabIndex = 100;
+            txtIdLlamadoConsulta.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtIdLlamadoConsulta.Location = new Point(139, 352);
+            txtIdLlamadoConsulta.Name = "txtIdLlamadoConsulta";
+            txtIdLlamadoConsulta.Size = new Size(100, 27);
+            txtIdLlamadoConsulta.TabIndex = 100;
             // 
             // btnGuardar
             // 
             btnGuardar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnGuardar.Location = new Point(76, 276);
+            btnGuardar.Location = new Point(116, 210);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(93, 40);
             btnGuardar.TabIndex = 99;
@@ -200,7 +165,7 @@
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminar.Location = new Point(233, 276);
+            btnEliminar.Location = new Point(326, 210);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(99, 40);
             btnEliminar.TabIndex = 98;
@@ -211,7 +176,7 @@
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConsultar.Location = new Point(345, 413);
+            btnConsultar.Location = new Point(335, 380);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(99, 40);
             btnConsultar.TabIndex = 97;
@@ -222,7 +187,7 @@
             // btnModificar
             // 
             btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.Location = new Point(234, 210);
+            btnModificar.Location = new Point(215, 210);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(98, 40);
             btnModificar.TabIndex = 96;
@@ -233,7 +198,7 @@
             // btnAgregar
             // 
             btnAgregar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAgregar.Location = new Point(76, 210);
+            btnAgregar.Location = new Point(12, 210);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(93, 40);
             btnAgregar.TabIndex = 95;
@@ -265,31 +230,84 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(12, 448);
+            label9.Location = new Point(18, 359);
             label9.Name = "label9";
-            label9.Size = new Size(106, 20);
+            label9.Size = new Size(87, 20);
             label9.TabIndex = 105;
-            label9.Text = "Buscar por Id:";
+            label9.Text = "IdLlamado:";
             // 
-            // textIdBusca
+            // txtNroLlamadoConsulta
             // 
-            textIdBusca.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textIdBusca.Location = new Point(198, 445);
-            textIdBusca.Name = "textIdBusca";
-            textIdBusca.Size = new Size(100, 27);
-            textIdBusca.TabIndex = 104;
+            txtNroLlamadoConsulta.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtNroLlamadoConsulta.Location = new Point(139, 401);
+            txtNroLlamadoConsulta.Name = "txtNroLlamadoConsulta";
+            txtNroLlamadoConsulta.Size = new Size(100, 27);
+            txtNroLlamadoConsulta.TabIndex = 104;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(230, 130);
+            label3.Name = "label3";
+            label3.Size = new Size(53, 20);
+            label3.TabIndex = 107;
+            label3.Text = "Fecha:";
+            // 
+            // dateTimePickerFecha
+            // 
+            dateTimePickerFecha.CustomFormat = "MM/yyyy";
+            dateTimePickerFecha.Format = DateTimePickerFormat.Custom;
+            dateTimePickerFecha.Location = new Point(289, 130);
+            dateTimePickerFecha.Name = "dateTimePickerFecha";
+            dateTimePickerFecha.ShowUpDown = true;
+            dateTimePickerFecha.Size = new Size(145, 23);
+            dateTimePickerFecha.TabIndex = 108;
+            dateTimePickerFecha.ValueChanged += dateTimePickerFecha_ValueChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(16, 301);
+            label5.Name = "label5";
+            label5.Size = new Size(89, 20);
+            label5.TabIndex = 109;
+            label5.Text = "Buscar por:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(18, 448);
+            label10.Name = "label10";
+            label10.Size = new Size(53, 20);
+            label10.TabIndex = 110;
+            label10.Text = "Fecha:";
+            // 
+            // dateTimePickerFechaConsulta
+            // 
+            dateTimePickerFechaConsulta.Location = new Point(87, 448);
+            dateTimePickerFechaConsulta.Name = "dateTimePickerFechaConsulta";
+            dateTimePickerFechaConsulta.Size = new Size(200, 23);
+            dateTimePickerFechaConsulta.TabIndex = 111;
             // 
             // Llamados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(869, 523);
+            Controls.Add(dateTimePickerFechaConsulta);
+            Controls.Add(label10);
+            Controls.Add(label5);
+            Controls.Add(dateTimePickerFecha);
+            Controls.Add(label3);
             Controls.Add(label9);
-            Controls.Add(textIdBusca);
+            Controls.Add(txtNroLlamadoConsulta);
             Controls.Add(cboActivo);
             Controls.Add(btnCancelar);
             Controls.Add(label8);
-            Controls.Add(textNroLlamadoBuscar);
+            Controls.Add(txtIdLlamadoConsulta);
             Controls.Add(btnGuardar);
             Controls.Add(btnEliminar);
             Controls.Add(btnConsultar);
@@ -297,13 +315,9 @@
             Controls.Add(btnAgregar);
             Controls.Add(label7);
             Controls.Add(dgvLlamados);
-            Controls.Add(textAño);
-            Controls.Add(label5);
             Controls.Add(label6);
             Controls.Add(textNroLlamado);
             Controls.Add(label4);
-            Controls.Add(textMes);
-            Controls.Add(label3);
             Controls.Add(textIdLlamado);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -318,19 +332,15 @@
         #endregion
 
         private Label label1;
-        private TextBox textAño;
-        private Label label5;
         private Label label6;
         private TextBox textNroLlamado;
         private Label label4;
-        private TextBox textMes;
-        private Label label3;
         private TextBox textIdLlamado;
         private Label label2;
         private DataGridView dgvLlamados;
         private Button btnCancelar;
         private Label label8;
-        private TextBox textNroLlamadoBuscar;
+        private TextBox txtIdLlamadoConsulta;
         private Button btnGuardar;
         private Button btnEliminar;
         private Button btnConsultar;
@@ -339,6 +349,11 @@
         private Label label7;
         private ComboBox cboActivo;
         private Label label9;
-        private TextBox textIdBusca;
+        private TextBox txtNroLlamadoConsulta;
+        private Label label3;
+        private DateTimePicker dateTimePickerFecha;
+        private Label label5;
+        private Label label10;
+        private DateTimePicker dateTimePickerFechaConsulta;
     }
 }

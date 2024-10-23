@@ -33,7 +33,6 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            textAño = new TextBox();
             label5 = new Label();
             label6 = new Label();
             dgvMaterias = new DataGridView();
@@ -51,6 +50,10 @@
             label7 = new Label();
             label9 = new Label();
             textBusquedaId = new TextBox();
+            label10 = new Label();
+            cboAño = new ComboBox();
+            FormCarreras = new Button();
+            formularioProf = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvMaterias).BeginInit();
             SuspendLayout();
             // 
@@ -100,19 +103,11 @@
             label1.TabIndex = 24;
             label1.Text = "MATERIAS";
             // 
-            // textAño
-            // 
-            textAño.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textAño.Location = new Point(97, 160);
-            textAño.Name = "textAño";
-            textAño.Size = new Size(59, 27);
-            textAño.TabIndex = 38;
-            // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(21, 160);
+            label5.Location = new Point(10, 160);
             label5.Name = "label5";
             label5.Size = new Size(42, 20);
             label5.TabIndex = 37;
@@ -133,7 +128,7 @@
             dgvMaterias.AllowUserToAddRows = false;
             dgvMaterias.AllowUserToDeleteRows = false;
             dgvMaterias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMaterias.Location = new Point(464, 50);
+            dgvMaterias.Location = new Point(622, 27);
             dgvMaterias.Name = "dgvMaterias";
             dgvMaterias.ReadOnly = true;
             dgvMaterias.RowTemplate.Height = 25;
@@ -144,7 +139,7 @@
             // btnCancelar
             // 
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancelar.Location = new Point(159, 340);
+            btnCancelar.Location = new Point(368, 218);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(99, 40);
             btnCancelar.TabIndex = 110;
@@ -156,16 +151,16 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(10, 400);
+            label8.Location = new Point(12, 331);
             label8.Name = "label8";
-            label8.Size = new Size(147, 20);
+            label8.Size = new Size(71, 20);
             label8.TabIndex = 109;
-            label8.Text = "Buscar por nombre:";
+            label8.Text = "Nombre:";
             // 
             // textBusquedaNombre
             // 
             textBusquedaNombre.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBusquedaNombre.Location = new Point(215, 397);
+            textBusquedaNombre.Location = new Point(189, 331);
             textBusquedaNombre.Name = "textBusquedaNombre";
             textBusquedaNombre.Size = new Size(100, 27);
             textBusquedaNombre.TabIndex = 108;
@@ -173,7 +168,7 @@
             // btnGuardar
             // 
             btnGuardar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnGuardar.Location = new Point(80, 282);
+            btnGuardar.Location = new Point(139, 218);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(93, 40);
             btnGuardar.TabIndex = 107;
@@ -184,7 +179,7 @@
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEliminar.Location = new Point(237, 282);
+            btnEliminar.Location = new Point(486, 218);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(99, 40);
             btnEliminar.TabIndex = 106;
@@ -195,7 +190,7 @@
             // btnConsultar
             // 
             btnConsultar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConsultar.Location = new Point(128, 470);
+            btnConsultar.Location = new Point(409, 349);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(99, 40);
             btnConsultar.TabIndex = 105;
@@ -206,7 +201,7 @@
             // btnModificar
             // 
             btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnModificar.Location = new Point(238, 204);
+            btnModificar.Location = new Point(252, 218);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(98, 40);
             btnModificar.TabIndex = 104;
@@ -217,7 +212,7 @@
             // btnAgregar
             // 
             btnAgregar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAgregar.Location = new Point(80, 204);
+            btnAgregar.Location = new Point(21, 218);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(93, 40);
             btnAgregar.TabIndex = 103;
@@ -267,25 +262,69 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(12, 437);
+            label9.Location = new Point(12, 381);
             label9.Name = "label9";
-            label9.Size = new Size(106, 20);
+            label9.Size = new Size(81, 20);
             label9.TabIndex = 115;
-            label9.Text = "Buscar por Id:";
+            label9.Text = "IdMateria:";
             // 
             // textBusquedaId
             // 
             textBusquedaId.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            textBusquedaId.Location = new Point(215, 434);
+            textBusquedaId.Location = new Point(189, 381);
             textBusquedaId.Name = "textBusquedaId";
             textBusquedaId.Size = new Size(100, 27);
             textBusquedaId.TabIndex = 116;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(12, 292);
+            label10.Name = "label10";
+            label10.Size = new Size(89, 20);
+            label10.TabIndex = 117;
+            label10.Text = "Buscar por:";
+            // 
+            // cboAño
+            // 
+            cboAño.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboAño.FormattingEnabled = true;
+            cboAño.Items.AddRange(new object[] { "1", "2", "3", "4" });
+            cboAño.Location = new Point(76, 161);
+            cboAño.Name = "cboAño";
+            cboAño.Size = new Size(55, 23);
+            cboAño.TabIndex = 118;
+            // 
+            // FormCarreras
+            // 
+            FormCarreras.Location = new Point(446, 73);
+            FormCarreras.Name = "FormCarreras";
+            FormCarreras.Size = new Size(139, 23);
+            FormCarreras.TabIndex = 119;
+            FormCarreras.Text = "Abrir carreras";
+            FormCarreras.UseVisualStyleBackColor = true;
+            FormCarreras.Click += FormCarreras_Click;
+            // 
+            // formularioProf
+            // 
+            formularioProf.Location = new Point(446, 115);
+            formularioProf.Name = "formularioProf";
+            formularioProf.Size = new Size(163, 23);
+            formularioProf.TabIndex = 120;
+            formularioProf.Text = "Abrir  profesores";
+            formularioProf.UseVisualStyleBackColor = true;
+            formularioProf.Click += formularioProf_Click;
             // 
             // Materias
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(926, 528);
+            ClientSize = new Size(1084, 561);
+            Controls.Add(formularioProf);
+            Controls.Add(FormCarreras);
+            Controls.Add(cboAño);
+            Controls.Add(label10);
             Controls.Add(textBusquedaId);
             Controls.Add(label9);
             Controls.Add(label7);
@@ -301,7 +340,6 @@
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
             Controls.Add(dgvMaterias);
-            Controls.Add(textAño);
             Controls.Add(label5);
             Controls.Add(label6);
             Controls.Add(textNomb);
@@ -323,7 +361,6 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox textAño;
         private Label label5;
         private Label label6;
         private DataGridView dgvMaterias;
@@ -341,5 +378,9 @@
         private Label label7;
         private Label label9;
         private TextBox textBusquedaId;
+        private Label label10;
+        private ComboBox cboAño;
+        private Button FormCarreras;
+        private Button formularioProf;
     }
 }

@@ -74,7 +74,6 @@ namespace MesaDeExamen
             textIdCarrera.Text = "0";
             textIdCarrera.Focus();
         }
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             var cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString());
@@ -92,8 +91,6 @@ namespace MesaDeExamen
                 Mensaje += String.Format("Ingrese la duracion \r");
                 lValidado = false;
             }
-
-
             if (lValidado == false)
             {
                 MessageBox.Show(Mensaje, "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -111,7 +108,6 @@ namespace MesaDeExamen
             cone.Close();
             Carreras_Load(sender, e);
         }
-
         private void Carreras_Load(object sender, EventArgs e)
         {
             var cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString());
@@ -123,35 +119,24 @@ namespace MesaDeExamen
                 dgvCarreras.DataSource = dt;
             }
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvCarreras.SelectedRows.Count > 0)
             {
-
                 int idCarrera = Convert.ToInt32(textIdCarrera.Text.Trim());
-
-
                 var confirmResult = MessageBox.Show("¿Estás seguro de que deseas eliminar este registro?",
                                                     "Confirmar Eliminación",
                                                     MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)
                 {
-
                     using (MySqlConnection cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;pwd=martinaanalista@"))
                     {
                         cone.Open();
-
-
                         string sentencia = string.Format("DELETE FROM carreras WHERE IdCarrera = {0}", idCarrera);
                         MySqlCommand comando = new MySqlCommand(sentencia, cone);
-
                         comando.ExecuteNonQuery();
-
-
                         Carreras_Load(sender, e);
                     }
-
                     MessageBox.Show("Registro eliminado correctamente.");
                 }
             }
@@ -167,7 +152,6 @@ namespace MesaDeExamen
             textDuracion.Enabled = true;
             textNombre.Focus();
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             if (!esNuevoRegistro && idCarreraActual != -1)
