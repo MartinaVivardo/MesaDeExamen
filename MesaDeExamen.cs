@@ -112,7 +112,7 @@ namespace MesaDeExamen
         private void MesaDeExamen_Load(object sender, EventArgs e)
         {
             var cone = new MySqlConnection(ConfigurationManager.ConnectionStrings["conexionDB"].ToString());
-            MySqlDataAdapter da = new MySqlDataAdapter("SELECT mesaexamen.IdMesaExamen, materias.NombreMateria, llamados.Fecha, carreras.NombreCarrera from mesaexamen left join materias on mesaexamen.IdMateria=materias.NombreMateria left join carreras on mesaexamen.IdCarrera=carreras.NombreCarrera", cone);
+            MySqlDataAdapter da = new MySqlDataAdapter("SELECT mesaexamen.IdMesaExamen, materias.NombreMateria, llamados.Fecha, carreras.NombreCarrera from mesaexamen left join materias on mesaexamen.IdMateria=materias.NombreMateria  left join carreras on mesaexamen.IdCarrera=carreras.NombreCarrera left join llamados on mesaexamen.Fecha = llamados.Fecha", cone);
             DataTable dt = new DataTable();
             int registros = da.Fill(dt);
             if (registros > 0)
@@ -261,7 +261,7 @@ namespace MesaDeExamen
         private void dgvMesa_SelectionChanged(object sender, EventArgs e)
         {
             //dtpFecha.Value = Convert.ToDateTime(dgvMesa.CurrentRow.Cells["Fecha"].Value);
-            cboLlamado.SelectedValue = dgvMesa.CurrentRow.Cells["IdLlamado"].Value;
+            cboLlamado.SelectedValue = dgvMesa.CurrentRow.Cells["Fecha"].Value;
             cboProf.SelectedValue = dgvMesa.CurrentRow.Cells["IdProfesorVocal"].Value;
             cboCarrera.SelectedValue = dgvMesa.CurrentRow.Cells["IdCarrera"].Value;
             cboIdMateria.SelectedValue = dgvMesa.CurrentRow.Cells["IdMateria"].Value;
