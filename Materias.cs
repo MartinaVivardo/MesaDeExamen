@@ -336,7 +336,12 @@ namespace MesaDeExamen
         private void formularioProf_Click(object sender, EventArgs e)
         {
             Profesores formProfesores = new Profesores();
-          formProfesores.Show();
+            formProfesores.Show();
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
