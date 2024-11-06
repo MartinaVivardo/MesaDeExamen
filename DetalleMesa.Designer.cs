@@ -65,6 +65,7 @@
             label13 = new Label();
             panel3 = new Panel();
             exit = new Label();
+            label16 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvDetalleMesa).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -483,6 +484,7 @@
             // panel3
             // 
             panel3.BackColor = Color.DarkRed;
+            panel3.Controls.Add(label16);
             panel3.Controls.Add(exit);
             panel3.Controls.Add(label1);
             panel3.Dock = DockStyle.Top;
@@ -504,6 +506,18 @@
             exit.TabIndex = 12;
             exit.Text = "X";
             exit.Click += exit_Click;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label16.ForeColor = Color.White;
+            label16.Location = new Point(1721, -7);
+            label16.Name = "label16";
+            label16.Size = new Size(44, 48);
+            label16.TabIndex = 70;
+            label16.Text = "□";
+            label16.Click += label16_Click;
             // 
             // DetalleMesa
             // 
@@ -570,5 +584,6 @@
         private Panel panel3;
         private Label exit;
         private Label label13;
+        private Label label16;
     }
 }

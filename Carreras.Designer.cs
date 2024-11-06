@@ -52,6 +52,7 @@
             label1 = new Label();
             panel3 = new Panel();
             label10 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvCarreras).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -263,6 +264,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkRed;
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label13);
             panel1.Dock = DockStyle.Top;
@@ -348,6 +350,18 @@
             label10.TabIndex = 56;
             label10.Text = "Datos de las carreras:";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(1582, -5);
+            label7.Name = "label7";
+            label7.Size = new Size(44, 48);
+            label7.TabIndex = 57;
+            label7.Text = "□";
+            label7.Click += label7_Click;
+            // 
             // Carreras
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -397,5 +411,6 @@
         private Label label1;
         private Panel panel3;
         private Label label10;
+        private Label label7;
     }
 }

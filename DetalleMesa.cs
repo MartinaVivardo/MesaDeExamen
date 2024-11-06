@@ -360,5 +360,17 @@ namespace MesaDeExamen
         {
             Application.Exit();
         }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
     }
 }

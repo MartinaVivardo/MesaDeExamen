@@ -59,6 +59,7 @@
             label1 = new Label();
             panel3 = new Panel();
             label10 = new Label();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMaterias).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -354,6 +355,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkRed;
+            panel1.Controls.Add(label11);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label13);
             panel1.Dock = DockStyle.Top;
@@ -445,6 +447,18 @@
             label10.TabIndex = 55;
             label10.Text = "Datos de las materias:";
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.White;
+            label11.Location = new Point(1582, -5);
+            label11.Name = "label11";
+            label11.Size = new Size(44, 48);
+            label11.TabIndex = 56;
+            label11.Text = "□";
+            label11.Click += label11_Click;
+            // 
             // Materias
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -502,5 +516,6 @@
         private Label label1;
         private Panel panel3;
         private Label label10;
+        private Label label11;
     }
 }

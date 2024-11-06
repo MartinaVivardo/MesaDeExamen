@@ -64,6 +64,7 @@
             label13 = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
+            label15 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvEstudiantes).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -423,6 +424,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkRed;
+            panel1.Controls.Add(label15);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label13);
             panel1.Dock = DockStyle.Top;
@@ -430,6 +432,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1684, 51);
             panel1.TabIndex = 100;
+            panel1.Paint += panel1_Paint;
             // 
             // label14
             // 
@@ -500,6 +503,18 @@
             panel3.Size = new Size(879, 695);
             panel3.TabIndex = 102;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label15.ForeColor = Color.White;
+            label15.Location = new Point(1582, -7);
+            label15.Name = "label15";
+            label15.Size = new Size(44, 48);
+            label15.TabIndex = 103;
+            label15.Text = "□";
+            label15.Click += label15_Click;
+            // 
             // Estudiantes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -562,5 +577,6 @@
         private Panel panel2;
         private Label label14;
         private Panel panel3;
+        private Label label15;
     }
 }

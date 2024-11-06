@@ -57,6 +57,7 @@
             label1 = new Label();
             panel3 = new Panel();
             label5 = new Label();
+            label16 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLlamados).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -316,6 +317,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkRed;
+            panel1.Controls.Add(label16);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label13);
             panel1.Dock = DockStyle.Top;
@@ -406,6 +408,18 @@
             label5.TabIndex = 54;
             label5.Text = "Datos del llamado:";
             // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label16.ForeColor = Color.White;
+            label16.Location = new Point(1582, -7);
+            label16.Name = "label16";
+            label16.Size = new Size(44, 48);
+            label16.TabIndex = 71;
+            label16.Text = "□";
+            label16.Click += label16_Click;
+            // 
             // Llamados
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -460,5 +474,6 @@
         private Label label1;
         private Panel panel3;
         private Label label5;
+        private Label label16;
     }
 }

@@ -54,6 +54,7 @@
             label1 = new Label();
             panel3 = new Panel();
             label10 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvProfesores).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -282,6 +283,7 @@
             // panel1
             // 
             panel1.BackColor = Color.DarkRed;
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(label13);
             panel1.Dock = DockStyle.Top;
@@ -354,9 +356,9 @@
             // 
             panel3.Controls.Add(label10);
             panel3.Controls.Add(dgvProfesores);
-            panel3.Location = new Point(768, 57);
+            panel3.Location = new Point(768, 61);
             panel3.Name = "panel3";
-            panel3.Size = new Size(894, 679);
+            panel3.Size = new Size(894, 675);
             panel3.TabIndex = 125;
             // 
             // label10
@@ -368,6 +370,18 @@
             label10.Size = new Size(292, 28);
             label10.TabIndex = 57;
             label10.Text = "Datos de las profesores:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(1582, -5);
+            label7.Name = "label7";
+            label7.Size = new Size(44, 48);
+            label7.TabIndex = 58;
+            label7.Text = "□";
+            label7.Click += label7_Click;
             // 
             // Profesores
             // 
@@ -419,5 +433,6 @@
         private Label label1;
         private Panel panel3;
         private Label label10;
+        private Label label7;
     }
 }
