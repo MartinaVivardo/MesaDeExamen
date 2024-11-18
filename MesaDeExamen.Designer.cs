@@ -42,21 +42,16 @@
             btnEliminar = new Button();
             btnCancelar = new Button();
             btnConsultar = new Button();
-            label7 = new Label();
-            label8 = new Label();
-            textIdBusqueda = new TextBox();
             dgvMesa = new DataGridView();
             label9 = new Label();
-            cboFin = new ComboBox();
+            cboFinalizada = new ComboBox();
             cboCarrera = new ComboBox();
             label10 = new Label();
-            cboIdMateria = new ComboBox();
+            cboMateria = new ComboBox();
             cboLlamado = new ComboBox();
             cboProf = new ComboBox();
-            label11 = new Label();
             label12 = new Label();
-            textBox1 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
+            dtpBuscarFecha = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dgvMesa).BeginInit();
             SuspendLayout();
             // 
@@ -213,34 +208,6 @@
             btnConsultar.UseVisualStyleBackColor = true;
             btnConsultar.Click += btnConsultar_Click;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(36, 424);
-            label7.Name = "label7";
-            label7.Size = new Size(67, 20);
-            label7.TabIndex = 17;
-            label7.Text = "Materia:";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(33, 470);
-            label8.Name = "label8";
-            label8.Size = new Size(68, 20);
-            label8.TabIndex = 18;
-            label8.Text = " IdMesa:";
-            // 
-            // textIdBusqueda
-            // 
-            textIdBusqueda.Location = new Point(134, 467);
-            textIdBusqueda.Margin = new Padding(3, 2, 3, 2);
-            textIdBusqueda.Name = "textIdBusqueda";
-            textIdBusqueda.Size = new Size(110, 23);
-            textIdBusqueda.TabIndex = 20;
-            // 
             // dgvMesa
             // 
             dgvMesa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -263,17 +230,17 @@
             label9.TabIndex = 22;
             label9.Text = "Finalizada:";
             // 
-            // cboFin
+            // cboFinalizada
             // 
-            cboFin.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboFin.Enabled = false;
-            cboFin.FormattingEnabled = true;
-            cboFin.Items.AddRange(new object[] { "Si", "No" });
-            cboFin.Location = new Point(439, 214);
-            cboFin.Margin = new Padding(3, 2, 3, 2);
-            cboFin.Name = "cboFin";
-            cboFin.Size = new Size(156, 23);
-            cboFin.TabIndex = 23;
+            cboFinalizada.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboFinalizada.Enabled = false;
+            cboFinalizada.FormattingEnabled = true;
+            cboFinalizada.Items.AddRange(new object[] { "Si", "No" });
+            cboFinalizada.Location = new Point(439, 214);
+            cboFinalizada.Margin = new Padding(3, 2, 3, 2);
+            cboFinalizada.Name = "cboFinalizada";
+            cboFinalizada.Size = new Size(156, 23);
+            cboFinalizada.TabIndex = 23;
             // 
             // cboCarrera
             // 
@@ -296,19 +263,20 @@
             label10.TabIndex = 25;
             label10.Text = "Carrera:";
             // 
-            // cboIdMateria
+            // cboMateria
             // 
-            cboIdMateria.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboIdMateria.Enabled = false;
-            cboIdMateria.FormattingEnabled = true;
-            cboIdMateria.Location = new Point(439, 168);
-            cboIdMateria.Margin = new Padding(3, 2, 3, 2);
-            cboIdMateria.Name = "cboIdMateria";
-            cboIdMateria.Size = new Size(156, 23);
-            cboIdMateria.TabIndex = 26;
+            cboMateria.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboMateria.Enabled = false;
+            cboMateria.FormattingEnabled = true;
+            cboMateria.Location = new Point(439, 168);
+            cboMateria.Margin = new Padding(3, 2, 3, 2);
+            cboMateria.Name = "cboMateria";
+            cboMateria.Size = new Size(156, 23);
+            cboMateria.TabIndex = 26;
             // 
             // cboLlamado
             // 
+            cboLlamado.DropDownStyle = ComboBoxStyle.DropDownList;
             cboLlamado.Enabled = false;
             cboLlamado.FormattingEnabled = true;
             cboLlamado.Location = new Point(120, 168);
@@ -328,61 +296,40 @@
             cboProf.Size = new Size(156, 23);
             cboProf.TabIndex = 28;
             // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(38, 370);
-            label11.Name = "label11";
-            label11.Size = new Size(53, 20);
-            label11.TabIndex = 30;
-            label11.Text = "Fecha:";
-            // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(52, 328);
+            label12.Location = new Point(28, 370);
             label12.Name = "label12";
-            label12.Size = new Size(89, 20);
+            label12.Size = new Size(130, 20);
             label12.TabIndex = 32;
-            label12.Text = "Buscar por:";
+            label12.Text = "Buscar por fecha:";
             // 
-            // textBox1
+            // dtpBuscarFecha
             // 
-            textBox1.Location = new Point(134, 424);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 33;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(134, 367);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(153, 23);
-            dateTimePicker1.TabIndex = 34;
+            dtpBuscarFecha.Format = DateTimePickerFormat.Custom;
+            dtpBuscarFecha.Location = new Point(177, 370);
+            dtpBuscarFecha.Name = "dtpBuscarFecha";
+            dtpBuscarFecha.Size = new Size(153, 23);
+            dtpBuscarFecha.TabIndex = 34;
+            dtpBuscarFecha.ValueChanged += dtpFecha1_ValueChanged;
             // 
             // MesaDeExamen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1164, 550);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox1);
+            Controls.Add(dtpBuscarFecha);
             Controls.Add(label12);
-            Controls.Add(label11);
             Controls.Add(cboProf);
             Controls.Add(cboLlamado);
-            Controls.Add(cboIdMateria);
+            Controls.Add(cboMateria);
             Controls.Add(label10);
             Controls.Add(cboCarrera);
-            Controls.Add(cboFin);
+            Controls.Add(cboFinalizada);
             Controls.Add(label9);
             Controls.Add(dgvMesa);
-            Controls.Add(textIdBusqueda);
-            Controls.Add(label8);
-            Controls.Add(label7);
             Controls.Add(btnConsultar);
             Controls.Add(btnCancelar);
             Controls.Add(btnEliminar);
@@ -422,20 +369,15 @@
         private Button btnEliminar;
         private Button btnCancelar;
         private Button btnConsultar;
-        private Label label7;
-        private Label label8;
-        private TextBox textIdBusqueda;
         private DataGridView dgvMesa;
         private Label label9;
-        private ComboBox cboFin;
+        private ComboBox cboFinalizada;
         private ComboBox cboCarrera;
         private Label label10;
-        private ComboBox cboIdMateria;
+        private ComboBox cboMateria;
         private ComboBox cboLlamado;
         private ComboBox cboProf;
-        private Label label11;
         private Label label12;
-        private TextBox textBox1;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpBuscarFecha;
     }
 }

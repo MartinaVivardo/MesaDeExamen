@@ -21,8 +21,6 @@ namespace MesaDeExamen
 
             InitializeComponent();
             estudiantes = new List<Estudiante>();
-
-
         }
 
         private void label1_Click(object sender, EventArgs e)
