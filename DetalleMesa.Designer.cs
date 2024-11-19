@@ -64,8 +64,8 @@
             panel2 = new Panel();
             label13 = new Label();
             panel3 = new Panel();
-            exit = new Label();
             label16 = new Label();
+            exit = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvDetalleMesa).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -151,7 +151,7 @@
             dgvDetalleMesa.Name = "dgvDetalleMesa";
             dgvDetalleMesa.RowHeadersWidth = 51;
             dgvDetalleMesa.RowTemplate.Height = 25;
-            dgvDetalleMesa.Size = new Size(977, 636);
+            dgvDetalleMesa.Size = new Size(834, 617);
             dgvDetalleMesa.TabIndex = 85;
             // 
             // btnCancelar
@@ -459,7 +459,7 @@
             panel1.Controls.Add(label6);
             panel1.Location = new Point(23, 55);
             panel1.Name = "panel1";
-            panel1.Size = new Size(742, 695);
+            panel1.Size = new Size(742, 684);
             panel1.TabIndex = 118;
             // 
             // panel2
@@ -468,7 +468,7 @@
             panel2.Controls.Add(dgvDetalleMesa);
             panel2.Location = new Point(784, 55);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1021, 695);
+            panel2.Size = new Size(882, 681);
             panel2.TabIndex = 119;
             // 
             // label13
@@ -490,8 +490,20 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1822, 49);
+            panel3.Size = new Size(1684, 49);
             panel3.TabIndex = 120;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label16.ForeColor = Color.White;
+            label16.Location = new Point(1583, -7);
+            label16.Name = "label16";
+            label16.Size = new Size(44, 48);
+            label16.TabIndex = 70;
+            label16.Text = "□";
+            label16.Click += label16_Click;
             // 
             // exit
             // 
@@ -500,36 +512,25 @@
             exit.Cursor = Cursors.Hand;
             exit.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             exit.ForeColor = Color.White;
-            exit.Location = new Point(1771, 9);
+            exit.Location = new Point(1633, 9);
             exit.Name = "exit";
             exit.Size = new Size(33, 32);
             exit.TabIndex = 12;
             exit.Text = "X";
             exit.Click += exit_Click;
             // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label16.ForeColor = Color.White;
-            label16.Location = new Point(1721, -7);
-            label16.Name = "label16";
-            label16.Size = new Size(44, 48);
-            label16.TabIndex = 70;
-            label16.Text = "□";
-            label16.Click += label16_Click;
-            // 
             // DetalleMesa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1822, 768);
+            ClientSize = new Size(1684, 748);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(label3);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "DetalleMesa";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DetalleMesa";

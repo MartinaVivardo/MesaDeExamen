@@ -60,11 +60,11 @@
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             panel1 = new Panel();
+            label15 = new Label();
             label14 = new Label();
             label13 = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
-            label15 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvEstudiantes).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -434,6 +434,18 @@
             panel1.TabIndex = 100;
             panel1.Paint += panel1_Paint;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label15.ForeColor = Color.White;
+            label15.Location = new Point(1582, -7);
+            label15.Name = "label15";
+            label15.Size = new Size(44, 48);
+            label15.TabIndex = 103;
+            label15.Text = "□";
+            label15.Click += label15_Click;
+            // 
             // label14
             // 
             label14.AutoSize = true;
@@ -503,18 +515,6 @@
             panel3.Size = new Size(879, 695);
             panel3.TabIndex = 102;
             // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label15.ForeColor = Color.White;
-            label15.Location = new Point(1582, -7);
-            label15.Name = "label15";
-            label15.Size = new Size(44, 48);
-            label15.TabIndex = 103;
-            label15.Text = "□";
-            label15.Click += label15_Click;
-            // 
             // Estudiantes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -525,6 +525,7 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "Estudiantes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

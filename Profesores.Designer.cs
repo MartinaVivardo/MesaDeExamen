@@ -48,13 +48,13 @@
             label8 = new Label();
             textApellidoBusqueda = new TextBox();
             panel1 = new Panel();
+            label7 = new Label();
             label14 = new Label();
             label13 = new Label();
             panel2 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
             label10 = new Label();
-            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvProfesores).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -292,6 +292,18 @@
             panel1.Size = new Size(1674, 51);
             panel1.TabIndex = 123;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(1582, -5);
+            label7.Name = "label7";
+            label7.Size = new Size(44, 48);
+            label7.TabIndex = 58;
+            label7.Text = "□";
+            label7.Click += label7_Click;
+            // 
             // label14
             // 
             label14.AutoSize = true;
@@ -369,19 +381,7 @@
             label10.Name = "label10";
             label10.Size = new Size(292, 28);
             label10.TabIndex = 57;
-            label10.Text = "Datos de las profesores:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(1582, -5);
-            label7.Name = "label7";
-            label7.Size = new Size(44, 48);
-            label7.TabIndex = 58;
-            label7.Text = "□";
-            label7.Click += label7_Click;
+            label10.Text = "Datos de los profesores:";
             // 
             // Profesores
             // 
@@ -393,7 +393,9 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
+            MinimizeBox = false;
             Name = "Profesores";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Profesores";
             Load += Profesores_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProfesores).EndInit();

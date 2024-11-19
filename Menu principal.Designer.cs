@@ -44,21 +44,22 @@
             btnMaterias = new Button();
             btnMesa = new Button();
             pictureBox1 = new PictureBox();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.BorderStyle = BorderStyle.FixedSingle;
             label1.Font = new Font("Tahoma", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
             label1.Location = new Point(457, 9);
             label1.Name = "label1";
-            label1.Size = new Size(462, 36);
+            label1.Size = new Size(460, 34);
             label1.TabIndex = 8;
             label1.Text = "GESTION DE MESA DE EXAMEN ";
             // 
@@ -103,7 +104,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(563, 362);
+            pictureBox2.Location = new Point(232, 286);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(320, 267);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -258,12 +259,21 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.insti;
-            pictureBox1.Location = new Point(525, 101);
+            pictureBox1.Location = new Point(160, 23);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(424, 214);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(pictureBox1);
+            panel3.Controls.Add(pictureBox2);
+            panel3.Location = new Point(365, 76);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(749, 601);
+            panel3.TabIndex = 16;
             // 
             // Menu_principal
             // 
@@ -271,12 +281,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1126, 689);
-            Controls.Add(pictureBox1);
+            Controls.Add(panel3);
             Controls.Add(panel2);
-            Controls.Add(pictureBox2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "Menu_principal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Menu_principal";
@@ -288,6 +298,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -307,5 +318,6 @@
         private Button btnMesa;
         private PictureBox pictureBox1;
         private Label label2;
+        private Panel panel3;
     }
 }

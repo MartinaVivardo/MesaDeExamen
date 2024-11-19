@@ -53,13 +53,13 @@
             FormCarreras = new Button();
             formularioProf = new Button();
             panel1 = new Panel();
+            label11 = new Label();
             label14 = new Label();
             label13 = new Label();
             panel2 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
             label10 = new Label();
-            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMaterias).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -364,6 +364,18 @@
             panel1.Size = new Size(1678, 51);
             panel1.TabIndex = 121;
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.White;
+            label11.Location = new Point(1582, -5);
+            label11.Name = "label11";
+            label11.Size = new Size(44, 48);
+            label11.TabIndex = 56;
+            label11.Text = "□";
+            label11.Click += label11_Click;
+            // 
             // label14
             // 
             label14.AutoSize = true;
@@ -447,18 +459,6 @@
             label10.TabIndex = 55;
             label10.Text = "Datos de las materias:";
             // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(1582, -5);
-            label11.Name = "label11";
-            label11.Size = new Size(44, 48);
-            label11.TabIndex = 56;
-            label11.Text = "□";
-            label11.Click += label11_Click;
-            // 
             // Materias
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -470,7 +470,9 @@
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
+            MinimizeBox = false;
             Name = "Materias";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Materias";
             Load += Materias_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMaterias).EndInit();

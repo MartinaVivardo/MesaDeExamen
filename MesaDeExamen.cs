@@ -50,94 +50,94 @@ namespace MesaDeExamen
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-                var cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;Pwd=martinaanalista@");
-                cone.Open();
-                bool lValidado = true;
-                string Mensaje = string.Empty;
+            var cone = new MySqlConnection("Data Source=localhost; Initial Catalog=mesasdeexamenes;Uid=root;Pwd=martinaanalista@");
+            cone.Open();
+            bool lValidado = true;
+            string Mensaje = string.Empty;
 
-                // Validaciones
-                if (cboProf.SelectedValue == null)
-                {
-                    Mensaje += "Seleccione un profesor.\r";
-                    lValidado = false;
-                }
-                if (cboCarrera.SelectedValue == null)
-                {
-                    Mensaje += "Seleccione una carrera.\r";
-                    lValidado = false;
-                }
-                if (cboMateria.SelectedValue == null)
-                {
-                    Mensaje += "Seleccione una materia.\r";
-                    lValidado = false;
-                }
-                if (cboLlamado.SelectedValue == null)
-                {
-                    Mensaje += "Seleccione un llamado.\r";
-                    lValidado = false;
-                }
-                if (string.IsNullOrEmpty(cboFinalizada.Text))
-                {
-                    Mensaje += "Seleccione si la mesa está finalizada o no.\r";
-                    lValidado = false;
-                }
+            // Validaciones
+            if (cboProf.SelectedValue == null)
+            {
+                Mensaje += "Seleccione un profesor.\r";
+                lValidado = false;
+            }
+            if (cboCarrera.SelectedValue == null)
+            {
+                Mensaje += "Seleccione una carrera.\r";
+                lValidado = false;
+            }
+            if (cboMateria.SelectedValue == null)
+            {
+                Mensaje += "Seleccione una materia.\r";
+                lValidado = false;
+            }
+            if (cboLlamado.SelectedValue == null)
+            {
+                Mensaje += "Seleccione un llamado.\r";
+                lValidado = false;
+            }
+            if (string.IsNullOrEmpty(cboFinalizada.Text))
+            {
+                Mensaje += "Seleccione si la mesa está finalizada o no.\r";
+                lValidado = false;
+            }
 
-                if (!lValidado)
-                {
-                    MessageBox.Show(Mensaje, "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    return;
-                }
+            if (!lValidado)
+            {
+                MessageBox.Show(Mensaje, "Solicitud del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
 
-                // Preparar sentencia SQL
-                string sentencia = string.Empty;
+            // Preparar sentencia SQL
+            string sentencia = string.Empty;
 
-                if (string.IsNullOrEmpty(textIdMesa.Text.Trim()) || textIdMesa.Text.Trim() == "0")
-                {
-                    // Insertar nueva mesa de examen
-                    sentencia = string.Format(
-                        "INSERT INTO mesaexamen (Fecha, Finalizada, IdMateria, IdProfesor, IdCarrera, IdLlamado) VALUES ('{0}', {1}, {2}, {3}, {4}, {5})",
-                        dtpFecha.Value.ToString("yyyy-MM-dd"),
-                        cboFinalizada.SelectedItem.ToString() == "Si" ? 1 : 0,
-                        cboMateria.SelectedValue,
-                        cboProf.SelectedValue,
-                        cboCarrera.SelectedValue,
-                        cboLlamado.SelectedValue
-                    );
-                }
-                else
-                {
-                    // Modificar mesa de examen existente
-                    sentencia = string.Format(
-                        "UPDATE mesaexamen SET Fecha = '{0}', Finalizada = {1}, IdMateria = {2}, IdProfesor = {3}, IdCarrera = {4}, IdLlamado = {5} WHERE IdMesaExamen = {6}",
-                        dtpFecha.Value.ToString("yyyy-MM-dd"),
-                        cboFinalizada.SelectedItem.ToString() == "Si" ? 1 : 0,
-                        cboMateria.SelectedValue,
-                        cboProf.SelectedValue,
-                        cboCarrera.SelectedValue,
-                        cboLlamado.SelectedValue,
-                        textIdMesa.Text.Trim()
-                    );
-                }
+            if (string.IsNullOrEmpty(textIdMesa.Text.Trim()) || textIdMesa.Text.Trim() == "0")
+            {
+                // Insertar nueva mesa de examen
+                sentencia = string.Format(
+                    "INSERT INTO mesaexamen (Fecha, Finalizada, IdMateria, IdProfesor, IdCarrera, IdLlamado) VALUES ('{0}', {1}, {2}, {3}, {4}, {5})",
+                    dtpFecha.Value.ToString("yyyy-MM-dd"),
+                    cboFinalizada.SelectedItem.ToString() == "Si" ? 1 : 0,
+                    cboMateria.SelectedValue,
+                    cboProf.SelectedValue,
+                    cboCarrera.SelectedValue,
+                    cboLlamado.SelectedValue
+                );
+            }
+            else
+            {
+                // Modificar mesa de examen existente
+                sentencia = string.Format(
+                    "UPDATE mesaexamen SET Fecha = '{0}', Finalizada = {1}, IdMateria = {2}, IdProfesor = {3}, IdCarrera = {4}, IdLlamado = {5} WHERE IdMesaExamen = {6}",
+                    dtpFecha.Value.ToString("yyyy-MM-dd"),
+                    cboFinalizada.SelectedItem.ToString() == "Si" ? 1 : 0,
+                    cboMateria.SelectedValue,
+                    cboProf.SelectedValue,
+                    cboCarrera.SelectedValue,
+                    cboLlamado.SelectedValue,
+                    textIdMesa.Text.Trim()
+                );
+            }
 
-                try
-                {
-                    // Ejecutar la sentencia
-                    var comando = new MySqlCommand(sentencia, cone);
-                    comando.ExecuteNonQuery();
-                    MessageBox.Show("Datos guardados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                // Ejecutar la sentencia
+                var comando = new MySqlCommand(sentencia, cone);
+                comando.ExecuteNonQuery();
+                MessageBox.Show("Datos guardados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Refrescar la vista
-                    MesaDeExamen_Load(sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    cone.Close();
-                }
-            
+                // Refrescar la vista
+                MesaDeExamen_Load(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cone.Close();
+            }
+
 
         }
 
@@ -359,24 +359,41 @@ namespace MesaDeExamen
 
         private void dgvMesa_SelectionChanged(object sender, EventArgs e)
         {
-                // Asegurarse de que se haya seleccionado una fila
-                
-                    // Obtener los valores de las celdas de la fila seleccionada
-                    textIdMesa.Text = dgvMesa.CurrentRow.Cells["IdMesaExamen"].Value.ToString();
-                    dtpFecha.Value = Convert.ToDateTime(dgvMesa.CurrentRow.Cells["Fecha"].Value.ToString());
-                    cboFinalizada.Text = dgvMesa.CurrentRow.Cells["Finalizada"].Value.ToString();
-                    cboMateria.SelectedValue = dgvMesa.CurrentRow.Cells["NombreMateria"].Value.ToString();
-            cboProf.SelectedValue = dgvMesa.CurrentRow.Cells["Profesor"].Value.ToString();
-                    cboCarrera.SelectedValue = dgvMesa.CurrentRow.Cells["NombreCarrera"].Value.ToString();
-                    cboLlamado.SelectedValue = dgvMesa.CurrentRow.Cells["NroLlamado"].Value.ToString();
-                
-            }
+            // Asegurarse de que se haya seleccionado una fila
 
-        
+            // Obtener los valores de las celdas de la fila seleccionada
+            textIdMesa.Text = dgvMesa.CurrentRow.Cells["IdMesaExamen"].Value.ToString();
+            dtpFecha.Value = Convert.ToDateTime(dgvMesa.CurrentRow.Cells["Fecha"].Value.ToString());
+            cboFinalizada.Text = dgvMesa.CurrentRow.Cells["Finalizada"].Value.ToString();
+            cboMateria.SelectedValue = dgvMesa.CurrentRow.Cells["NombreMateria"].Value.ToString();
+            cboProf.SelectedValue = dgvMesa.CurrentRow.Cells["Profesor"].Value.ToString();
+            cboCarrera.SelectedValue = dgvMesa.CurrentRow.Cells["NombreCarrera"].Value.ToString();
+            cboLlamado.SelectedValue = dgvMesa.CurrentRow.Cells["NroLlamado"].Value.ToString();
+
+        }
+
+
 
         private void dtpFecha1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
         }
     }
 

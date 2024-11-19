@@ -51,13 +51,13 @@
             label10 = new Label();
             dateTimePickerFechaConsulta = new DateTimePicker();
             panel1 = new Panel();
+            label16 = new Label();
             label14 = new Label();
             label13 = new Label();
             panel2 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
             label5 = new Label();
-            label16 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLlamados).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -287,12 +287,13 @@
             // dateTimePickerFecha
             // 
             dateTimePickerFecha.CustomFormat = "MM/yyyy";
+            dateTimePickerFecha.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePickerFecha.Format = DateTimePickerFormat.Custom;
             dateTimePickerFecha.Location = new Point(115, 24);
             dateTimePickerFecha.Margin = new Padding(3, 4, 3, 4);
             dateTimePickerFecha.Name = "dateTimePickerFecha";
             dateTimePickerFecha.ShowUpDown = true;
-            dateTimePickerFecha.Size = new Size(165, 27);
+            dateTimePickerFecha.Size = new Size(165, 31);
             dateTimePickerFecha.TabIndex = 108;
             dateTimePickerFecha.ValueChanged += dateTimePickerFecha_ValueChanged;
             // 
@@ -325,6 +326,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1666, 51);
             panel1.TabIndex = 112;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label16.ForeColor = Color.White;
+            label16.Location = new Point(1582, -7);
+            label16.Name = "label16";
+            label16.Size = new Size(44, 48);
+            label16.TabIndex = 71;
+            label16.Text = "□";
+            label16.Click += label16_Click;
             // 
             // label14
             // 
@@ -408,18 +421,6 @@
             label5.TabIndex = 54;
             label5.Text = "Datos del llamado:";
             // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            label16.ForeColor = Color.White;
-            label16.Location = new Point(1582, -7);
-            label16.Name = "label16";
-            label16.Size = new Size(44, 48);
-            label16.TabIndex = 71;
-            label16.Text = "□";
-            label16.Click += label16_Click;
-            // 
             // Llamados
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -430,6 +431,7 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "Llamados";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Llamados";
