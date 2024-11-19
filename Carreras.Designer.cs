@@ -131,7 +131,7 @@
             dgvCarreras.Name = "dgvCarreras";
             dgvCarreras.RowHeadersWidth = 51;
             dgvCarreras.RowTemplate.Height = 25;
-            dgvCarreras.Size = new Size(845, 627);
+            dgvCarreras.Size = new Size(359, 426);
             dgvCarreras.TabIndex = 35;
             dgvCarreras.SelectionChanged += dgvCarreras_SelectionChanged;
             // 
@@ -186,7 +186,7 @@
             btnConsultar.FlatStyle = FlatStyle.Flat;
             btnConsultar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnConsultar.ForeColor = Color.White;
-            btnConsultar.Location = new Point(405, 488);
+            btnConsultar.Location = new Point(405, 382);
             btnConsultar.Margin = new Padding(3, 4, 3, 4);
             btnConsultar.Name = "btnConsultar";
             btnConsultar.Size = new Size(134, 51);
@@ -229,7 +229,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Tahoma", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(34, 473);
+            label5.Location = new Point(34, 367);
             label5.Name = "label5";
             label5.Size = new Size(89, 22);
             label5.TabIndex = 52;
@@ -239,7 +239,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Tahoma", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(12, 533);
+            label6.Location = new Point(12, 427);
             label6.Name = "label6";
             label6.Size = new Size(111, 22);
             label6.TabIndex = 53;
@@ -248,7 +248,7 @@
             // textBusqueda
             // 
             textBusqueda.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textBusqueda.Location = new Point(135, 457);
+            textBusqueda.Location = new Point(135, 351);
             textBusqueda.Name = "textBusqueda";
             textBusqueda.Size = new Size(208, 38);
             textBusqueda.TabIndex = 54;
@@ -256,7 +256,7 @@
             // textIdBusqueda
             // 
             textIdBusqueda.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            textIdBusqueda.Location = new Point(135, 528);
+            textIdBusqueda.Location = new Point(135, 422);
             textIdBusqueda.Name = "textIdBusqueda";
             textIdBusqueda.Size = new Size(138, 31);
             textIdBusqueda.TabIndex = 55;
@@ -270,7 +270,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1683, 51);
+            panel1.Size = new Size(1191, 51);
             panel1.TabIndex = 122;
             // 
             // label7
@@ -278,7 +278,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(1582, -5);
+            label7.Location = new Point(1086, -5);
             label7.Name = "label7";
             label7.Size = new Size(44, 48);
             label7.TabIndex = 57;
@@ -302,7 +302,7 @@
             label13.BackColor = Color.Transparent;
             label13.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             label13.ForeColor = Color.White;
-            label13.Location = new Point(1632, 9);
+            label13.Location = new Point(1136, 9);
             label13.Name = "label13";
             label13.Size = new Size(33, 32);
             label13.TabIndex = 0;
@@ -330,14 +330,14 @@
             panel2.Controls.Add(btnEliminar);
             panel2.Location = new Point(12, 66);
             panel2.Name = "panel2";
-            panel2.Size = new Size(734, 700);
+            panel2.Size = new Size(734, 482);
             panel2.TabIndex = 123;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(34, 391);
+            label1.Location = new Point(34, 285);
             label1.Name = "label1";
             label1.Size = new Size(144, 28);
             label1.TabIndex = 122;
@@ -349,7 +349,7 @@
             panel3.Controls.Add(dgvCarreras);
             panel3.Location = new Point(779, 66);
             panel3.Name = "panel3";
-            panel3.Size = new Size(886, 700);
+            panel3.Size = new Size(394, 482);
             panel3.TabIndex = 124;
             // 
             // label10
@@ -366,7 +366,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1683, 800);
+            ClientSize = new Size(1191, 564);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
