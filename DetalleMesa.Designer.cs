@@ -498,7 +498,7 @@
             label16.AutoSize = true;
             label16.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
             label16.ForeColor = Color.White;
-            label16.Location = new Point(1583, -7);
+            label16.Location = new Point(1110, -6);
             label16.Name = "label16";
             label16.Size = new Size(44, 48);
             label16.TabIndex = 70;
@@ -512,7 +512,7 @@
             exit.Cursor = Cursors.Hand;
             exit.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             exit.ForeColor = Color.White;
-            exit.Location = new Point(1633, 9);
+            exit.Location = new Point(1160, 10);
             exit.Name = "exit";
             exit.Size = new Size(33, 32);
             exit.TabIndex = 12;

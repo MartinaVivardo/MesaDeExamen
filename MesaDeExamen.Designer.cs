@@ -345,7 +345,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Tahoma", 24F, FontStyle.Bold, GraphicsUnit.Point);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(1582, -5);
+            label7.Location = new Point(1150, -5);
             label7.Name = "label7";
             label7.Size = new Size(44, 48);
             label7.TabIndex = 58;
@@ -369,7 +369,7 @@
             label13.BackColor = Color.Transparent;
             label13.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             label13.ForeColor = Color.White;
-            label13.Location = new Point(1632, 9);
+            label13.Location = new Point(1200, 9);
             label13.Name = "label13";
             label13.Size = new Size(33, 32);
             label13.TabIndex = 0;
